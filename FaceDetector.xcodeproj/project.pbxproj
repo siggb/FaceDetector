@@ -13,9 +13,6 @@
 		5890F3A618031B7900872B41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5890F3A418031B7900872B41 /* InfoPlist.strings */; };
 		5890F3A818031B7900872B41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3A718031B7900872B41 /* main.m */; };
 		5890F3AC18031B7900872B41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3AB18031B7900872B41 /* AppDelegate.m */; };
-		5890F3AF18031B7900872B41 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3AE18031B7900872B41 /* RootViewController.m */; };
-		5890F3B218031B7900872B41 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3B118031B7900872B41 /* DataViewController.m */; };
-		5890F3B518031B7900872B41 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3B418031B7900872B41 /* ModelController.m */; };
 		5890F3B818031B7900872B41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5890F3B618031B7900872B41 /* Main.storyboard */; };
 		5890F3BA18031B7900872B41 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5890F3B918031B7900872B41 /* Images.xcassets */; };
 		5890F3C118031B7A00872B41 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F3C018031B7A00872B41 /* XCTest.framework */; };
@@ -46,12 +43,6 @@
 		5890F3A918031B7900872B41 /* FaceDetector-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceDetector-Prefix.pch"; sourceTree = "<group>"; };
 		5890F3AA18031B7900872B41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5890F3AB18031B7900872B41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5890F3AD18031B7900872B41 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		5890F3AE18031B7900872B41 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		5890F3B018031B7900872B41 /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
-		5890F3B118031B7900872B41 /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
-		5890F3B318031B7900872B41 /* ModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
-		5890F3B418031B7900872B41 /* ModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
 		5890F3B718031B7900872B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5890F3B918031B7900872B41 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5890F3BF18031B7900872B41 /* FaceDetectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceDetectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,12 +111,6 @@
 			children = (
 				5890F3AA18031B7900872B41 /* AppDelegate.h */,
 				5890F3AB18031B7900872B41 /* AppDelegate.m */,
-				5890F3AD18031B7900872B41 /* RootViewController.h */,
-				5890F3AE18031B7900872B41 /* RootViewController.m */,
-				5890F3B018031B7900872B41 /* DataViewController.h */,
-				5890F3B118031B7900872B41 /* DataViewController.m */,
-				5890F3B318031B7900872B41 /* ModelController.h */,
-				5890F3B418031B7900872B41 /* ModelController.m */,
 				5890F3B618031B7900872B41 /* Main.storyboard */,
 				5890F3B918031B7900872B41 /* Images.xcassets */,
 				5890F3A218031B7900872B41 /* Supporting Files */,
@@ -259,11 +244,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5890F3B218031B7900872B41 /* DataViewController.m in Sources */,
 				5890F3AC18031B7900872B41 /* AppDelegate.m in Sources */,
-				5890F3B518031B7900872B41 /* ModelController.m in Sources */,
 				5890F3A818031B7900872B41 /* main.m in Sources */,
-				5890F3AF18031B7900872B41 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
