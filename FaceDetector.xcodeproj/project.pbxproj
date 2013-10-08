@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5806DE6D180491B9007F1B67 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6B180491B9007F1B67 /* CoreImage.framework */; };
+		5806DE6E180491B9007F1B67 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6C180491B9007F1B67 /* ImageIO.framework */; };
+		5806DE70180491C4007F1B67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6F180491C4007F1B67 /* QuartzCore.framework */; };
+		581178B7180491FC000876AC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581178B5180491FC000876AC /* CoreMedia.framework */; };
+		581178B8180491FC000876AC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581178B6180491FC000876AC /* CoreVideo.framework */; };
+		581178BA18049207000876AC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581178B918049207000876AC /* AVFoundation.framework */; };
+		581178BC1804920D000876AC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581178BB1804920D000876AC /* AssetsLibrary.framework */; };
 		58172F4B1803E0D5008E305E /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4A1803E0D5008E305E /* CameraViewController.m */; };
 		58172F4C1803E0D5008E305E /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4A1803E0D5008E305E /* CameraViewController.m */; };
 		58172F4F1803E0E5008E305E /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4E1803E0E5008E305E /* InfoViewController.m */; };
@@ -94,6 +101,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5806DE6A18048E04007F1B67 /* CameraVCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVCAdditions.h; sourceTree = "<group>"; };
+		5806DE6B180491B9007F1B67 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		5806DE6C180491B9007F1B67 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		5806DE6F180491C4007F1B67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		581178B5180491FC000876AC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		581178B6180491FC000876AC /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		581178B918049207000876AC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		581178BB1804920D000876AC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		58172F491803E0D5008E305E /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		58172F4A1803E0D5008E305E /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		58172F4D1803E0E5008E305E /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -174,7 +189,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				581178BC1804920D000876AC /* AssetsLibrary.framework in Frameworks */,
+				581178BA18049207000876AC /* AVFoundation.framework in Frameworks */,
+				581178B7180491FC000876AC /* CoreMedia.framework in Frameworks */,
+				581178B8180491FC000876AC /* CoreVideo.framework in Frameworks */,
 				5890F39E18031B7900872B41 /* CoreGraphics.framework in Frameworks */,
+				5806DE6D180491B9007F1B67 /* CoreImage.framework in Frameworks */,
+				5806DE70180491C4007F1B67 /* QuartzCore.framework in Frameworks */,
+				5806DE6E180491B9007F1B67 /* ImageIO.framework in Frameworks */,
 				5890F3A018031B7900872B41 /* UIKit.framework in Frameworks */,
 				5890F39C18031B7900872B41 /* Foundation.framework in Frameworks */,
 			);
@@ -193,9 +215,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5806DE6818048B4B007F1B67 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				5806DE6A18048E04007F1B67 /* CameraVCAdditions.h */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
 		58172F461803E0BF008E305E /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				5806DE6818048B4B007F1B67 /* Additions */,
 				58172F491803E0D5008E305E /* CameraViewController.h */,
 				58172F4A1803E0D5008E305E /* CameraViewController.m */,
 			);
@@ -382,6 +413,13 @@
 		5890F39A18031B7900872B41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				581178BB1804920D000876AC /* AssetsLibrary.framework */,
+				581178B918049207000876AC /* AVFoundation.framework */,
+				581178B5180491FC000876AC /* CoreMedia.framework */,
+				581178B6180491FC000876AC /* CoreVideo.framework */,
+				5806DE6F180491C4007F1B67 /* QuartzCore.framework */,
+				5806DE6B180491B9007F1B67 /* CoreImage.framework */,
+				5806DE6C180491B9007F1B67 /* ImageIO.framework */,
 				5890F39B18031B7900872B41 /* Foundation.framework */,
 				5890F39D18031B7900872B41 /* CoreGraphics.framework */,
 				5890F39F18031B7900872B41 /* UIKit.framework */,
