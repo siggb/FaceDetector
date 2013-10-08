@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58172F4B1803E0D5008E305E /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4A1803E0D5008E305E /* CameraViewController.m */; };
+		58172F4C1803E0D5008E305E /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4A1803E0D5008E305E /* CameraViewController.m */; };
+		58172F4F1803E0E5008E305E /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4E1803E0E5008E305E /* InfoViewController.m */; };
+		58172F501803E0E5008E305E /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4E1803E0E5008E305E /* InfoViewController.m */; };
+		58172F531803E0F7008E305E /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F521803E0F7008E305E /* StoreViewController.m */; };
+		58172F541803E0F7008E305E /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F521803E0F7008E305E /* StoreViewController.m */; };
 		582816F0180337BB00AC5F7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 582816E7180337BB00AC5F7D /* AppDelegate.m */; };
 		582816F1180337BB00AC5F7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 582816E7180337BB00AC5F7D /* AppDelegate.m */; };
 		582816F2180337BB00AC5F7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582816E8180337BB00AC5F7D /* Main.storyboard */; };
@@ -67,8 +73,6 @@
 		582817D4180338A800AC5F7D /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5828176E180338A800AC5F7D /* NYXImagesHelper.m */; };
 		582817D5180338A800AC5F7D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58281772180338A800AC5F7D /* Reachability.m */; };
 		582817D6180338A800AC5F7D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58281772180338A800AC5F7D /* Reachability.m */; };
-		582817EB18033AA000AC5F7D /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582817E918033AA000AC5F7D /* MainScreenViewController.m */; };
-		582817EC18033AA000AC5F7D /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582817E918033AA000AC5F7D /* MainScreenViewController.m */; };
 		5890F39C18031B7900872B41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39B18031B7900872B41 /* Foundation.framework */; };
 		5890F39E18031B7900872B41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39D18031B7900872B41 /* CoreGraphics.framework */; };
 		5890F3A018031B7900872B41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39F18031B7900872B41 /* UIKit.framework */; };
@@ -90,6 +94,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58172F491803E0D5008E305E /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		58172F4A1803E0D5008E305E /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		58172F4D1803E0E5008E305E /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		58172F4E1803E0E5008E305E /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		58172F511803E0F7008E305E /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		58172F521803E0F7008E305E /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 		582816E6180337BB00AC5F7D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		582816E7180337BB00AC5F7D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		582816E9180337BB00AC5F7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,8 +158,6 @@
 		5828176F180338A800AC5F7D /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
 		58281771180338A800AC5F7D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		58281772180338A800AC5F7D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		582817E818033AA000AC5F7D /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
-		582817E918033AA000AC5F7D /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		5890F39818031B7900872B41 /* FaceDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5890F39B18031B7900872B41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5890F39D18031B7900872B41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +193,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58172F461803E0BF008E305E /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				58172F491803E0D5008E305E /* CameraViewController.h */,
+				58172F4A1803E0D5008E305E /* CameraViewController.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		58172F471803E0BF008E305E /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				58172F4D1803E0E5008E305E /* InfoViewController.h */,
+				58172F4E1803E0E5008E305E /* InfoViewController.m */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		58172F481803E0BF008E305E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				58172F511803E0F7008E305E /* StoreViewController.h */,
+				58172F521803E0F7008E305E /* StoreViewController.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		582816E5180337BB00AC5F7D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +247,9 @@
 		582816FD1803380900AC5F7D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				582817E718033A8600AC5F7D /* MainScreen */,
+				58172F461803E0BF008E305E /* Camera */,
+				58172F471803E0BF008E305E /* Info */,
+				58172F481803E0BF008E305E /* Store */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -320,15 +357,6 @@
 				58281772180338A800AC5F7D /* Reachability.m */,
 			);
 			path = Reachability;
-			sourceTree = "<group>";
-		};
-		582817E718033A8600AC5F7D /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				582817E818033AA000AC5F7D /* MainScreenViewController.h */,
-				582817E918033AA000AC5F7D /* MainScreenViewController.m */,
-			);
-			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		5890F38F18031B7900872B41 = {
@@ -483,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58281783180338A800AC5F7D /* AFURLConnectionOperation.m in Sources */,
+				58172F531803E0F7008E305E /* StoreViewController.m in Sources */,
 				58281787180338A800AC5F7D /* UIImageView+AFNetworking.m in Sources */,
 				58281779180338A800AC5F7D /* AFImageRequestOperation.m in Sources */,
 				5828177D180338A800AC5F7D /* AFJSONUtilities.m in Sources */,
@@ -497,7 +526,6 @@
 				582817D3180338A800AC5F7D /* NYXImagesHelper.m in Sources */,
 				582817C3180338A800AC5F7D /* UIImage+Masking.m in Sources */,
 				582817D5180338A800AC5F7D /* Reachability.m in Sources */,
-				582817EB18033AA000AC5F7D /* MainScreenViewController.m in Sources */,
 				58281777180338A800AC5F7D /* AFHTTPRequestOperation.m in Sources */,
 				582816F0180337BB00AC5F7D /* AppDelegate.m in Sources */,
 				582817CF180338A800AC5F7D /* UIView+Screenshot.m in Sources */,
@@ -507,7 +535,9 @@
 				582817CD180338A800AC5F7D /* UIScrollView+Screenshot.m in Sources */,
 				58281775180338A800AC5F7D /* AFHTTPClient.m in Sources */,
 				582817C1180338A800AC5F7D /* UIImage+Filtering.m in Sources */,
+				58172F4B1803E0D5008E305E /* CameraViewController.m in Sources */,
 				58281781180338A800AC5F7D /* AFPropertyListRequestOperation.m in Sources */,
+				58172F4F1803E0E5008E305E /* InfoViewController.m in Sources */,
 				5828177F180338A800AC5F7D /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +551,7 @@
 				5828177A180338A800AC5F7D /* AFImageRequestOperation.m in Sources */,
 				582817C4180338A800AC5F7D /* UIImage+Masking.m in Sources */,
 				582817C2180338A800AC5F7D /* UIImage+Filtering.m in Sources */,
+				58172F4C1803E0D5008E305E /* CameraViewController.m in Sources */,
 				58281778180338A800AC5F7D /* AFHTTPRequestOperation.m in Sources */,
 				582817BE180338A800AC5F7D /* UIImage+Blurring.m in Sources */,
 				58281786180338A800AC5F7D /* AFXMLRequestOperation.m in Sources */,
@@ -529,6 +560,7 @@
 				582817CE180338A800AC5F7D /* UIScrollView+Screenshot.m in Sources */,
 				58281784180338A800AC5F7D /* AFURLConnectionOperation.m in Sources */,
 				58281780180338A800AC5F7D /* AFNetworkActivityIndicatorManager.m in Sources */,
+				58172F541803E0F7008E305E /* StoreViewController.m in Sources */,
 				582817C8180338A800AC5F7D /* UIImage+Resizing.m in Sources */,
 				582817D0180338A800AC5F7D /* UIView+Screenshot.m in Sources */,
 				58281774180338A800AC5F7D /* AFDownloadRequestOperation.m in Sources */,
@@ -537,7 +569,7 @@
 				582817C6180338A800AC5F7D /* UIImage+Reflection.m in Sources */,
 				582816FB180337BB00AC5F7D /* main.m in Sources */,
 				582817D2180338A800AC5F7D /* NYXProgressiveImageView.m in Sources */,
-				582817EC18033AA000AC5F7D /* MainScreenViewController.m in Sources */,
+				58172F501803E0E5008E305E /* InfoViewController.m in Sources */,
 				58281782180338A800AC5F7D /* AFPropertyListRequestOperation.m in Sources */,
 				5828177C180338A800AC5F7D /* AFJSONRequestOperation.m in Sources */,
 				582817C0180338A800AC5F7D /* UIImage+Enhancing.m in Sources */,

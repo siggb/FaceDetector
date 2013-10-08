@@ -1,18 +1,18 @@
 //
-//  MainScreenViewController.m
+//  InfoViewController.m
 //  FaceDetector
 //
-//  Created by Ildar Sibagatov on 07.10.13.
+//  Created by Ildar Sibagatov on 08.10.13.
 //  Copyright (c) 2013 Sig Inc. All rights reserved.
 //
 
-#import "MainScreenViewController.h"
+#import "InfoViewController.h"
 
-@interface MainScreenViewController ()
+@interface InfoViewController ()
 
 @end
 
-@implementation MainScreenViewController
+@implementation InfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
