@@ -9,6 +9,9 @@
 #import "InfoViewController.h"
 
 @interface InfoViewController ()
+{
+    BOOL isViewed;
+}
 
 @end
 
@@ -27,6 +30,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+    AVSpeechUtterance *utterance = nil;
+    if (isViewed == NO) {
+        utterance = [AVSpeechUtterance speechUtteranceWithString:@"Info page"];
+        isViewed = YES;
+    }
+    else {
+        utterance = [AVSpeechUtterance speechUtteranceWithString:@"Seriusly, this is Info page!"];
+    }
+    utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
+    [synthesizer speakUtterance:utterance];
 }
 
 - (void)didReceiveMemoryWarning

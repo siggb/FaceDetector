@@ -9,12 +9,15 @@
 #import "CameraViewController.h"
 #import "CameraVCAdditions.h"
 
+#define LayerNamespace @"FaceLayer"
+
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, UIGestureRecognizerDelegate>
 {
     AVCaptureStillImageOutput *stillImageOutput;
     AVCaptureVideoDataOutput *videoDataOutput;
     dispatch_queue_t videoDataOutputQueue;
     
+    BOOL isUsingFrontFacingCamera;
     AVCaptureVideoPreviewLayer *previewLayer;
     
     CGFloat effectiveScale;
@@ -43,13 +46,16 @@
 
 #pragma mark - Методы настройки механизма захвата видео
 
+/**
+ *  Метод настройки механизма для связи устройства захвата, буфера и устройства вывода
+ */
 - (void)setupAVCapture
 {
 	NSError *error = nil;
 	
     // создаем сессию для захвата данных с камеры и передачи в приложение
 	AVCaptureSession *session = [AVCaptureSession new];
-	[session setSessionPreset:AVCaptureSessionPresetiFrame960x540]; // AVCaptureSessionPreset640x480
+	[session setSessionPreset:AVCaptureSessionPresetiFrame960x540];
 	
     // устанавливаем устройство захвата
 	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -59,6 +65,8 @@
         NSLog(@"Selected device can not be used for capture");
         return;
     }
+    
+    isUsingFrontFacingCamera = NO;
 	
     // связываем устройство захвата с текущей сессией
 	if ([session canAddInput:device_input]) {
@@ -66,6 +74,7 @@
     }
 	
     // создаем объект для вывода статичных изображений
+    // (необходимо для возможности получения снимков по нажатию на кнопку)
 	stillImageOutput = [AVCaptureStillImageOutput new];
 	[stillImageOutput addObserver:self
                        forKeyPath:@"capturingStillImage"
@@ -78,6 +87,7 @@
     }
 	
     // создаем объект для получения не сжатых кадров из потока видео
+    // (необходимо для анализа потока видео по кадрам для определения признаков человеческого лица)
 	videoDataOutput = [AVCaptureVideoDataOutput new];
 	NSDictionary *rgb_output_settings = nil;
     rgb_output_settings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCMPixelFormat_32BGRA]
@@ -115,17 +125,23 @@
     [session startRunning];
 }
 
+/**
+ *  Метод настройки механизма, отвечающего за определение очертаний лица на кадре из видео
+ */
 - (void)setupCIDetector
 {
     // создаем объект для определения очертаний лица человека
     // на кадре видео-потока
 	faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace
                                       context:nil
-                                      options:@{CIDetectorAccuracy:CIDetectorAccuracyLow}]; // CIDetectorAccuracyHigh
+                                      options:@{CIDetectorAccuracy:CIDetectorAccuracyLow}];
 }
 
 #pragma mark - Методы AVCaptureVideoDataOutputSampleBuffer Delegate
 
+/**
+ *  Делегированный метод - пулл кадров из видео потока устройства захвата
+ */
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
@@ -141,8 +157,44 @@
                                                        options:(__bridge NSDictionary *)attachments];
     (attachments)?CFRelease(attachments):nil;
     
-	NSDictionary *image_options = @{CIDetectorImageOrientation:@(kCIDetectorImageOrientation0RowOnTheRight0ColAtTheTop)};
+    NSNumber *detected_orientation = nil;
+    UIDeviceOrientation current_orientation = [[UIDevice currentDevice] orientation];
     
+    switch (current_orientation) {
+        case UIDeviceOrientationPortrait:
+            detected_orientation = @(kCIDetectorImageOrientation0RowOnTheRight0ColAtTheTop);
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            detected_orientation = @(kCIDetectorImageOrientation0RowOnTheLeft0ColAtTheBottom);
+            break;
+            
+        case UIDeviceOrientationLandscapeLeft: {
+            if (isUsingFrontFacingCamera)
+                detected_orientation = @(kCIDetectorImageOrientation0RowAtTheBottom0ColOnTheRight);
+            else
+                detected_orientation = @(kCIDetectorImageOrientation0RowAtTheTop0ColOnTheLeft);
+        }
+            break;
+            
+        case UIDeviceOrientationLandscapeRight: {
+            if (isUsingFrontFacingCamera)
+                detected_orientation = @(kCIDetectorImageOrientation0RowAtTheTop0ColOnTheLeft);
+            else
+                detected_orientation = @(kCIDetectorImageOrientation0RowAtTheBottom0ColOnTheRight);
+        }
+            break;
+        
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown:
+        default:
+            NSLog(@"Detection of device orientation is failed");
+            return;
+	}
+    
+	NSDictionary *image_options = @{CIDetectorImageOrientation:detected_orientation};
+    
+    // ищем признаки очертаний лица на текущем кадре
 	NSArray *features = [faceDetector featuresInImage:ci_image
                                               options:image_options];
 	
@@ -156,13 +208,20 @@
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self drawFaceBoxesForFeatures:features
                            forVideoBox:clap
-                       isVideoMirrored:[connection isVideoMirrored]];
+                       isVideoMirrored:[connection isVideoMirrored]
+                           orientation:current_orientation];
 	});
 }
 
 #pragma mark - Методы определения очертаний лица и выделения их на кадре
 
-- (void)drawFaceBoxesForFeatures:(NSArray *)features forVideoBox:(CGRect)clap isVideoMirrored:(BOOL)isVideoMirrored
+/**
+ *  Метод для анализа найденных признаков очертаний лица конкретного кадра видео
+ */
+- (void)drawFaceBoxesForFeatures:(NSArray *)features
+                     forVideoBox:(CGRect)clap
+                 isVideoMirrored:(BOOL)isVideoMirrored
+                     orientation:(UIDeviceOrientation)orientation
 {
     NSLog(@"- drawFaceBoxesForFeatures");
     
@@ -172,13 +231,13 @@
     // количество распознаных признаков очертаний лица человека
 	NSInteger features_count = [features count];
 	
-    // начинаем отрисовку выделения найденных признаков очертаний лиц
+    // начинаем отрисовку найденных признаков очертаний лиц
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 	
 	// скрываем все прежние показанные признаки
 	for (CALayer *layer in sublayers) {
-		if ([[layer name] isEqualToString:@"FaceLayer"])
+		if ([[layer name] isEqualToString:LayerNamespace])
 			[layer setHidden:YES];
 	}
 	
@@ -197,12 +256,15 @@
     // отображаем все найденные признаки очертаний лица
     NSInteger currentFeature = 0;
     NSInteger currentSublayer = 0;
-	for (CIFaceFeature *ff in features)
+	for (CIFaceFeature *face_feature in features)
     {
-		// find the correct position for the square layer within the previewLayer
-		// the feature box originates in the bottom left of the video frame.
-		// (Bottom right if mirroring is turned on)
-		CGRect faceRect = [ff bounds];
+//        face_feature.hasLeftEyePosition
+//        face_feature.hasRightEyePosition
+//        face_feature.hasSmile
+//        face_feature.hasMouthPosition
+//        face_feature.hasFaceAngle
+        
+		CGRect faceRect = [face_feature bounds];
         
 		// flip preview width and height
 		CGFloat temp = faceRect.size.width;
@@ -229,7 +291,7 @@
 		// re-use an existing layer if possible
 		while ( !featureLayer && (currentSublayer < sublayers_count) ) {
 			CALayer *currentLayer = [sublayers objectAtIndex:currentSublayer++];
-			if ( [[currentLayer name] isEqualToString:@"FaceLayer"] ) {
+			if ( [[currentLayer name] isEqualToString:LayerNamespace] ) {
 				featureLayer = currentLayer;
 				[currentLayer setHidden:NO];
 			}
@@ -240,12 +302,28 @@
 			featureLayer = [CALayer new];
 			// [featureLayer setContents:(id)[square CGImage]];  == !!! наш прямоугольник
             [featureLayer setContents:(id)[[UIImage imageNamed:@"CameraIcon"] CGImage]];
-			[featureLayer setName:@"FaceLayer"];
+			[featureLayer setName:LayerNamespace];
 			[previewLayer addSublayer:featureLayer];
 		}
 		[featureLayer setFrame:faceRect];
 		
-		[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(0.))];
+        switch (orientation) {
+			case UIDeviceOrientationPortrait:
+                [featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(0.))];
+				break;
+			case UIDeviceOrientationPortraitUpsideDown:
+				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(180.))];
+				break;
+			case UIDeviceOrientationLandscapeLeft:
+				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(90.))];
+				break;
+			case UIDeviceOrientationLandscapeRight:
+				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(-90.))];
+				break;
+            case UIDeviceOrientationFaceUp:
+            case UIDeviceOrientationFaceDown:
+            default: break;
+		}
         
 		currentFeature++;
 	}
