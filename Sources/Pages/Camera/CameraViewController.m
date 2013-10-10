@@ -145,8 +145,6 @@
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
-    NSLog(@"- captureOutput");
-    
     // получили изображение в буфер
 	CVPixelBufferRef pixel_buffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault,
@@ -188,7 +186,7 @@
         case UIDeviceOrientationFaceUp:
         case UIDeviceOrientationFaceDown:
         default:
-            NSLog(@"Detection of device orientation is failed");
+            // Detection of device orientation is failed
             return;
 	}
     
@@ -223,25 +221,21 @@
                  isVideoMirrored:(BOOL)isVideoMirrored
                      orientation:(UIDeviceOrientation)orientation
 {
-    NSLog(@"- drawFaceBoxesForFeatures");
-    
 	NSArray *sublayers = [NSArray arrayWithArray:[previewLayer sublayers]];
 	NSInteger sublayers_count = [sublayers count];
-    
-    // количество распознаных признаков очертаний лица человека
 	NSInteger features_count = [features count];
 	
     // начинаем отрисовку найденных признаков очертаний лиц
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 	
-	// скрываем все прежние показанные признаки
+	// скрываем все признаки, показанные прежде
 	for (CALayer *layer in sublayers) {
 		if ([[layer name] isEqualToString:LayerNamespace])
 			[layer setHidden:YES];
 	}
 	
-    // выходим, если распознаные признаки очертаний лица отсутствуют
+    // прекращаем отрисовку признаков, если они отсутствуют
 	if (features_count == 0) {
 		[CATransaction commit];
 		return;
@@ -254,95 +248,72 @@
                                                   apertureSize:clap.size];
 	
     // отображаем все найденные признаки очертаний лица
-    NSInteger currentFeature = 0;
-    NSInteger currentSublayer = 0;
+    NSInteger current_feature = 0;
+    NSInteger current_sublayer = 0;
 	for (CIFaceFeature *face_feature in features)
     {
-//        face_feature.hasLeftEyePosition
-//        face_feature.hasRightEyePosition
-//        face_feature.hasSmile
-//        face_feature.hasMouthPosition
-//        face_feature.hasFaceAngle
-        
-		CGRect faceRect = [face_feature bounds];
-        
-		// flip preview width and height
-		CGFloat temp = faceRect.size.width;
-		faceRect.size.width = faceRect.size.height;
-		faceRect.size.height = temp;
-		temp = faceRect.origin.x;
-		faceRect.origin.x = faceRect.origin.y;
-		faceRect.origin.y = temp;
-		// scale coordinates so they fit in the preview box, which may be scaled
-		CGFloat widthScaleBy = CGRectGetWidth(preview_box) / clap.size.height;
-		CGFloat heightScaleBy = CGRectGetHeight(preview_box) / clap.size.width;
-		faceRect.size.width *= widthScaleBy;
-		faceRect.size.height *= heightScaleBy;
-		faceRect.origin.x *= widthScaleBy;
-		faceRect.origin.y *= heightScaleBy;
-        
-		if (isVideoMirrored)
-			faceRect = CGRectOffset(faceRect, CGRectGetMinX(preview_box) + CGRectGetWidth(preview_box) - faceRect.size.width - (faceRect.origin.x * 2), CGRectGetMinY(preview_box));
-		else
-			faceRect = CGRectOffset(faceRect, CGRectGetMinX(preview_box), CGRectGetMinY(preview_box));
+		CGRect face_rect = [self prepareFaceRect:[face_feature bounds] previewBox:preview_box
+                                         andClap:clap mirrored:isVideoMirrored];
 		
-		CALayer *featureLayer = nil;
+		CALayer *feature_layer = nil;
 		
-		// re-use an existing layer if possible
-		while ( !featureLayer && (currentSublayer < sublayers_count) ) {
-			CALayer *currentLayer = [sublayers objectAtIndex:currentSublayer++];
-			if ( [[currentLayer name] isEqualToString:LayerNamespace] ) {
-				featureLayer = currentLayer;
-				[currentLayer setHidden:NO];
+		// если слой уже существует - то используем его
+		while ((feature_layer == nil) && (current_sublayer < sublayers_count)) {
+			CALayer *current_layer = [sublayers objectAtIndex:current_sublayer++];
+			if ( [[current_layer name] isEqualToString:LayerNamespace] ) {
+				feature_layer = current_layer;
+				[current_layer setHidden:NO];
 			}
 		}
 		
-		// create a new one if necessary
-		if ( !featureLayer ) {
-			featureLayer = [CALayer new];
-			// [featureLayer setContents:(id)[square CGImage]];  == !!! наш прямоугольник
-            [featureLayer setContents:(id)[[UIImage imageNamed:@"CameraIcon"] CGImage]];
-			[featureLayer setName:LayerNamespace];
-			[previewLayer addSublayer:featureLayer];
+		// если слой нет слоев для использования - создаем новый
+		if (feature_layer == nil) {
+			feature_layer = [CALayer new];
+            [feature_layer setContents:(id)[[UIImage imageNamed:@"CameraIcon"] CGImage]];
+			[feature_layer setName:LayerNamespace];
+			[previewLayer addSublayer:feature_layer];
 		}
-		[featureLayer setFrame:faceRect];
-		
+        
+        // позиционируем слой по координатам найденных очертаний лица
+		[feature_layer setFrame:face_rect];
         switch (orientation) {
 			case UIDeviceOrientationPortrait:
-                [featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(0.))];
+                [feature_layer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(0.))];
 				break;
 			case UIDeviceOrientationPortraitUpsideDown:
-				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(180.))];
+				[feature_layer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(180.))];
 				break;
 			case UIDeviceOrientationLandscapeLeft:
-				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(90.))];
+				[feature_layer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(90.))];
 				break;
 			case UIDeviceOrientationLandscapeRight:
-				[featureLayer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(-90.))];
+				[feature_layer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(-90.))];
 				break;
             case UIDeviceOrientationFaceUp:
             case UIDeviceOrientationFaceDown:
             default: break;
 		}
         
-		currentFeature++;
+        // face_feature.hasLeftEyePosition hasRightEyePosition hasSmile hasMouthPosition
+        
+		current_feature++;
 	}
 	
     // завершаем отрисовку выделения найденных признаков очертаний лиц
 	[CATransaction commit];
 }
 
-// find where the video box is positioned within the preview layer based on the video size and gravity
+/**
+ *  Определяем границы, в пределах которых расположен кадр на области слоя с превью
+ */
 + (CGRect)videoPreviewBoxForGravity:(NSString *)gravity frameSize:(CGSize)frameSize apertureSize:(CGSize)apertureSize
 {
-    NSLog(@"- videoPreviewBoxForGravity");
-    
-    CGFloat apertureRatio = apertureSize.height / apertureSize.width;
+    CGFloat aperture_ratio = apertureSize.height / apertureSize.width;
     CGFloat viewRatio = frameSize.width / frameSize.height;
     
     CGSize size = CGSizeZero;
     if ([gravity isEqualToString:AVLayerVideoGravityResizeAspectFill]) {
-        if (viewRatio > apertureRatio) {
+        if (viewRatio > aperture_ratio) {
             size.width = frameSize.width;
             size.height = apertureSize.width * (frameSize.width / apertureSize.height);
         } else {
@@ -350,7 +321,7 @@
             size.height = frameSize.height;
         }
     } else if ([gravity isEqualToString:AVLayerVideoGravityResizeAspect]) {
-        if (viewRatio > apertureRatio) {
+        if (viewRatio > aperture_ratio) {
             size.width = apertureSize.height * (frameSize.height / apertureSize.width);
             size.height = frameSize.height;
         } else {
@@ -362,19 +333,111 @@
         size.height = frameSize.height;
     }
 	
-	CGRect videoBox;
-	videoBox.size = size;
+	CGRect video_box;
+	video_box.size = size;
 	if (size.width < frameSize.width)
-		videoBox.origin.x = (frameSize.width - size.width) / 2;
+		video_box.origin.x = (frameSize.width - size.width) / 2;
 	else
-		videoBox.origin.x = (size.width - frameSize.width) / 2;
+		video_box.origin.x = (size.width - frameSize.width) / 2;
 	
 	if ( size.height < frameSize.height )
-		videoBox.origin.y = (frameSize.height - size.height) / 2;
+		video_box.origin.y = (frameSize.height - size.height) / 2;
 	else
-		videoBox.origin.y = (size.height - frameSize.height) / 2;
+		video_box.origin.y = (size.height - frameSize.height) / 2;
     
-	return videoBox;
+	return video_box;
+}
+
+/**
+ *  Метод для подготовки координат и размеров области, содержащей очертания лица
+ */
+- (CGRect)prepareFaceRect:(CGRect)featureBounds previewBox:(CGRect)previewBox
+                  andClap:(CGRect)clap mirrored:(BOOL)mirrored
+{
+    CGRect face_rect = featureBounds;
+    
+    // меняем местами высоту и ширину, х и у
+    CGFloat temp = face_rect.size.width;
+    face_rect.size.width = face_rect.size.height;
+    face_rect.size.height = temp;
+    temp = face_rect.origin.x;
+    face_rect.origin.x = face_rect.origin.y;
+    face_rect.origin.y = temp;
+    
+    // координируем размер кадра
+    CGFloat width_scale_by = CGRectGetWidth(previewBox) / clap.size.height;
+    CGFloat height_scale_by = CGRectGetHeight(previewBox) / clap.size.width;
+    face_rect.size.width *= width_scale_by;
+    face_rect.size.height *= height_scale_by;
+    face_rect.origin.x *= width_scale_by;
+    face_rect.origin.y *= height_scale_by;
+    
+    // зеркально разворачиваем изображение, если требуется
+    if (mirrored) {
+        face_rect = CGRectOffset(face_rect,
+                                 CGRectGetMinX(previewBox) + CGRectGetWidth(previewBox) -
+                                 face_rect.size.width - (face_rect.origin.x * 2), CGRectGetMinY(previewBox));
+    }
+    else {
+        face_rect = CGRectOffset(face_rect, CGRectGetMinX(previewBox), CGRectGetMinY(previewBox));
+    }
+    return face_rect;
+}
+
+#pragma mark - Обработка нажатий по кнопкам
+
+/**
+ *  Делаем снимок с камеры и сохраняем его в локальном хранилище
+ */
+- (IBAction)takePhotoClicked:(UIButton*)sender
+{
+    NSLog(@"- Click!");
+}
+
+/**
+ *  Меняем источник ввода с фронтальной камеры на тыльную (и наоборот)
+ */
+- (IBAction)switchCamerasClicked:(UIButton*)sender
+{
+    NSLog(@"- Switch!");
+    
+    AVCaptureDevicePosition desired_position = (isUsingFrontFacingCamera)?AVCaptureDevicePositionBack
+                                                                         :AVCaptureDevicePositionFront;
+	
+	for (AVCaptureDevice *dev in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+		if ([dev position] != desired_position)
+            continue;
+        
+        [[previewLayer session] beginConfiguration];
+        AVCaptureDeviceInput *new_input = [AVCaptureDeviceInput deviceInputWithDevice:dev
+                                                                                error:nil];
+        for (AVCaptureInput *old_input in [[previewLayer session] inputs]) {
+            [[previewLayer session] removeInput:old_input];
+        }
+        
+        // меняем размеры фрейма сессии устройства захвата видео потока
+        switch ([dev position]) {
+            case AVCaptureDevicePositionBack:
+                [[previewLayer session] setSessionPreset:AVCaptureSessionPresetiFrame960x540];
+                break;
+                
+            case AVCaptureDevicePositionFront:
+                [[previewLayer session] setSessionPreset:AVCaptureSessionPreset640x480];
+                break;
+                
+            default:
+                break;
+        }
+        
+        // связываем устройство захвата с текущей сессией
+        if ([[previewLayer session] canAddInput:new_input]) {
+            [[previewLayer session] addInput:new_input];
+        }
+        
+        [[previewLayer session] commitConfiguration];
+        break;
+	}
+	isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
 }
 
 @end
