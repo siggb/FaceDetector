@@ -243,9 +243,9 @@
     
 	CGSize parent_frame_size = [self.previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
-	CGRect preview_box = [self.class videoPreviewBoxForGravity:gravity
-                                                     frameSize:parent_frame_size
-                                                  apertureSize:clap.size];
+	CGRect preview_box = [self videoPreviewBoxForGravity:gravity
+                                               frameSize:parent_frame_size
+                                            apertureSize:clap.size];
 	
     // отображаем все найденные признаки очертаний лица
     NSInteger current_feature = 0;
@@ -306,7 +306,7 @@
 /**
  *  Определяем границы, в пределах которых расположен кадр на области слоя с превью
  */
-+ (CGRect)videoPreviewBoxForGravity:(NSString *)gravity frameSize:(CGSize)frameSize apertureSize:(CGSize)apertureSize
+- (CGRect)videoPreviewBoxForGravity:(NSString *)gravity frameSize:(CGSize)frameSize apertureSize:(CGSize)apertureSize
 {
     CGFloat aperture_ratio = apertureSize.height / apertureSize.width;
     CGFloat viewRatio = frameSize.width / frameSize.height;
