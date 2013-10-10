@@ -182,11 +182,9 @@
                 detected_orientation = @(kCIDetectorImageOrientation0RowAtTheBottom0ColOnTheRight);
         }
             break;
-        
-        case UIDeviceOrientationFaceUp:
-        case UIDeviceOrientationFaceDown:
+            
         default:
-            // Detection of device orientation is failed
+            detected_orientation = @(kCIDetectorImageOrientation0RowOnTheRight0ColAtTheTop);
             return;
 	}
     
@@ -206,7 +204,6 @@
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self drawFaceBoxesForFeatures:features
                            forVideoBox:clap
-                       isVideoMirrored:[connection isVideoMirrored]
                            orientation:current_orientation];
 	});
 }
@@ -218,7 +215,6 @@
  */
 - (void)drawFaceBoxesForFeatures:(NSArray *)features
                      forVideoBox:(CGRect)clap
-                 isVideoMirrored:(BOOL)isVideoMirrored
                      orientation:(UIDeviceOrientation)orientation
 {
 	NSArray *sublayers = [NSArray arrayWithArray:[previewLayer sublayers]];
@@ -241,6 +237,7 @@
 		return;
 	}
     
+    BOOL is_video_mirrored = [[previewLayer connection] isVideoMirrored];
 	CGSize parent_frame_size = [self.previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
 	CGRect preview_box = [self videoPreviewBoxForGravity:gravity
@@ -253,7 +250,7 @@
 	for (CIFaceFeature *face_feature in features)
     {
 		CGRect face_rect = [self prepareFaceRect:[face_feature bounds] previewBox:preview_box
-                                         andClap:clap mirrored:isVideoMirrored];
+                                         andClap:clap mirrored:is_video_mirrored];
 		
 		CALayer *feature_layer = nil;
 		
@@ -289,9 +286,8 @@
 			case UIDeviceOrientationLandscapeRight:
 				[feature_layer setAffineTransform:CGAffineTransformMakeRotation(DegreesToRadians(-90.))];
 				break;
-            case UIDeviceOrientationFaceUp:
-            case UIDeviceOrientationFaceDown:
-            default: break;
+            default:
+                break;
 		}
         
         // face_feature.hasLeftEyePosition hasRightEyePosition hasSmile hasMouthPosition
