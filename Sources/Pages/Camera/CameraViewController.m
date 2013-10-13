@@ -9,8 +9,6 @@
 #import "CameraViewController.h"
 #import "CameraVCAdditions.h"
 
-#define LayerNamespace @"FaceLayer"
-
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, UIGestureRecognizerDelegate>
 {
     AVCaptureStillImageOutput *stillImageOutput;
@@ -227,8 +225,11 @@
 	
 	// скрываем все признаки, показанные прежде
 	for (CALayer *layer in sublayers) {
-		if ([[layer name] isEqualToString:LayerNamespace])
+		if (([[layer name] isEqualToString:FaceLayerName]) || ([[layer name] isEqualToString:LeftEyeLayerName])
+            || ([[layer name] isEqualToString:RightEyeLayerName]) || ([[layer name] isEqualToString:MouthLayerName]))
+        {
 			[layer setHidden:YES];
+        }
 	}
 	
     // прекращаем отрисовку признаков, если они отсутствуют
@@ -257,7 +258,7 @@
 		// если слой уже существует - то используем его
 		while ((feature_layer == nil) && (current_sublayer < sublayers_count)) {
 			CALayer *current_layer = [sublayers objectAtIndex:current_sublayer++];
-			if ( [[current_layer name] isEqualToString:LayerNamespace] ) {
+			if ([[current_layer name] isEqualToString:FaceLayerName]) {
 				feature_layer = current_layer;
 				[current_layer setHidden:NO];
 			}
@@ -266,8 +267,8 @@
 		// если слой нет слоев для использования - создаем новый
 		if (feature_layer == nil) {
 			feature_layer = [CALayer new];
-            [feature_layer setContents:(id)[[UIImage imageNamed:@"CameraIcon"] CGImage]];
-			[feature_layer setName:LayerNamespace];
+            [feature_layer setContents:(id)[[UIImage imageNamed:@"FaceSquare"] CGImage]];
+			[feature_layer setName:FaceLayerName];
 			[previewLayer addSublayer:feature_layer];
 		}
         
@@ -290,7 +291,10 @@
                 break;
 		}
         
-        // face_feature.hasLeftEyePosition hasRightEyePosition hasSmile hasMouthPosition
+        // отмечаем признаки глаз и рта, если таковые имеются
+        [self drawEyesAndMouth:face_feature previewBox:preview_box andClap:clap
+                      mirrored:is_video_mirrored sublayersCount:sublayers_count
+               currentSublayer:current_sublayer sublayers:sublayers];
         
 		current_feature++;
 	}
@@ -378,6 +382,114 @@
         face_rect = CGRectOffset(face_rect, CGRectGetMinX(previewBox), CGRectGetMinY(previewBox));
     }
     return face_rect;
+}
+
+/**
+ *  Метод для отрисовки признаков глаз и рта на кадре видео-потока
+ */
+- (void)drawEyesAndMouth:(CIFaceFeature *)face_feature previewBox:(CGRect)previewBox
+                 andClap:(CGRect)clap mirrored:(BOOL)mirrored
+          sublayersCount:(NSInteger)sublayersCount currentSublayer:(NSInteger)currentSublayer
+               sublayers:(NSArray *)sublayers
+{
+    // отмечаем левый глаз на изображении
+    if(face_feature.hasLeftEyePosition) {
+        CGPoint left_eye_position = face_feature.leftEyePosition;
+        CGRect left_eye_rect = CGRectMake(left_eye_position.x - CGRectGetWidth([face_feature bounds])*0.15,
+                                          left_eye_position.y - CGRectGetHeight([face_feature bounds])*0.15,
+                                          CGRectGetWidth([face_feature bounds])*0.3,
+                                          CGRectGetWidth([face_feature bounds])*0.3);
+        left_eye_rect = [self prepareFaceRect:left_eye_rect previewBox:previewBox
+                                      andClap:clap mirrored:mirrored];
+        
+        // если слой уже существует - то используем его
+        CALayer *left_eye_layer = nil;
+        while ((left_eye_layer == nil) && (currentSublayer < sublayersCount)) {
+            CALayer *current_layer = [sublayers objectAtIndex:currentSublayer++];
+            if ( [[current_layer name] isEqualToString:LeftEyeLayerName] ) {
+                left_eye_layer = current_layer;
+                [left_eye_layer setHidden:NO];
+                [left_eye_layer setFrame:left_eye_rect];
+                left_eye_layer.borderWidth = 0.05*CGRectGetWidth(left_eye_rect);
+            }
+        }
+        
+        // если слой не был найден - создаем его заново
+        if (left_eye_layer == nil) {
+            UIView *left_eye_view = [[UIView alloc] initWithFrame:left_eye_rect];
+            [left_eye_view setBackgroundColor:[UIColor clearColor]];
+            left_eye_view.layer.borderWidth = 0.05*CGRectGetWidth(left_eye_rect);
+            left_eye_view.layer.borderColor = WhiteCGColor;
+            left_eye_view.layer.name = LeftEyeLayerName;
+            [previewLayer addSublayer:left_eye_view.layer];
+        }
+    }
+    
+    // отмечаем правый глаз на изображении
+    if(face_feature.hasRightEyePosition) {
+        CGPoint right_eye_position = face_feature.rightEyePosition;
+        CGRect right_eye_rect = CGRectMake(right_eye_position.x - CGRectGetWidth([face_feature bounds])*0.15,
+                                           right_eye_position.y - CGRectGetHeight([face_feature bounds])*0.15,
+                                           CGRectGetWidth([face_feature bounds])*0.3,
+                                           CGRectGetWidth([face_feature bounds])*0.3);
+        right_eye_rect = [self prepareFaceRect:right_eye_rect previewBox:previewBox
+                                       andClap:clap mirrored:mirrored];
+        
+        // если слой уже существует - то используем его
+        CALayer *right_eye_layer = nil;
+        while ((right_eye_layer == nil) && (currentSublayer < sublayersCount)) {
+            CALayer *current_layer = [sublayers objectAtIndex:currentSublayer++];
+            if ( [[current_layer name] isEqualToString:RightEyeLayerName] ) {
+                right_eye_layer = current_layer;
+                [right_eye_layer setHidden:NO];
+                [right_eye_layer setFrame:right_eye_rect];
+                right_eye_layer.borderWidth = 0.05*CGRectGetWidth(right_eye_rect);
+            }
+        }
+        
+        // если слой не был найден - создаем его заново
+        if (right_eye_layer == nil) {
+            UIView *left_eye_view = [[UIView alloc] initWithFrame:right_eye_rect];
+            [left_eye_view setBackgroundColor:[UIColor clearColor]];
+            left_eye_view.layer.borderWidth = 0.05*CGRectGetWidth(right_eye_rect);
+            left_eye_view.layer.borderColor = WhiteCGColor;
+            left_eye_view.layer.name = LeftEyeLayerName;
+            [previewLayer addSublayer:left_eye_view.layer];
+        }
+    }
+    
+    // отмечаем рот на изображении
+    if(face_feature.hasMouthPosition) {
+        CGPoint mouth_position = face_feature.mouthPosition;
+        CGRect mouth_rect = CGRectMake(mouth_position.x - CGRectGetWidth([face_feature bounds])*0.15,
+                                       mouth_position.y - CGRectGetHeight([face_feature bounds])*0.15,
+                                       CGRectGetWidth([face_feature bounds])*0.3,
+                                       CGRectGetWidth([face_feature bounds])*0.3);
+        mouth_rect = [self prepareFaceRect:mouth_rect previewBox:previewBox
+                                   andClap:clap mirrored:mirrored];
+        
+        // если слой уже существует - то используем его
+        CALayer *mouth_layer = nil;
+        while ((mouth_layer == nil) && (currentSublayer < sublayersCount)) {
+            CALayer *current_layer = [sublayers objectAtIndex:currentSublayer++];
+            if ( [[current_layer name] isEqualToString:MouthLayerName] ) {
+                mouth_layer = current_layer;
+                [mouth_layer setHidden:NO];
+                [mouth_layer setFrame:mouth_rect];
+                mouth_layer.borderWidth = 0.05*CGRectGetWidth(mouth_rect);
+            }
+        }
+        
+        // если слой не был найден - создаем его заново
+        if (mouth_layer == nil) {
+            UIView *mouth_view = [[UIView alloc] initWithFrame:mouth_rect];
+            [mouth_view setBackgroundColor:[UIColor clearColor]];
+            mouth_view.layer.borderWidth = 0.05*CGRectGetWidth(mouth_rect);
+            mouth_view.layer.borderColor = WhiteCGColor;
+            mouth_view.layer.name = MouthLayerName;
+            [previewLayer addSublayer:mouth_view.layer];
+        }
+    }
 }
 
 #pragma mark - Обработка нажатий по кнопкам

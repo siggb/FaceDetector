@@ -88,6 +88,12 @@
 		5890F3C318031B7A00872B41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39F18031B7900872B41 /* UIKit.framework */; };
 		5890F3CB18031B7A00872B41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5890F3C918031B7A00872B41 /* InfoPlist.strings */; };
 		5890F3CD18031B7A00872B41 /* FaceDetectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890F3CC18031B7A00872B41 /* FaceDetectorTests.m */; };
+		58D691F8180AAD5000310081 /* pic1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F5180AAD5000310081 /* pic1.jpg */; };
+		58D691F9180AAD5000310081 /* pic1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F5180AAD5000310081 /* pic1.jpg */; };
+		58D691FA180AAD5000310081 /* pic2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F6180AAD5000310081 /* pic2.jpg */; };
+		58D691FB180AAD5000310081 /* pic2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F6180AAD5000310081 /* pic2.jpg */; };
+		58D691FC180AAD5000310081 /* pic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F7180AAD5000310081 /* pic3.jpg */; };
+		58D691FD180AAD5000310081 /* pic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F7180AAD5000310081 /* pic3.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +188,9 @@
 		5890F3C818031B7A00872B41 /* FaceDetectorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceDetectorTests-Info.plist"; sourceTree = "<group>"; };
 		5890F3CA18031B7A00872B41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5890F3CC18031B7A00872B41 /* FaceDetectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceDetectorTests.m; sourceTree = "<group>"; };
+		58D691F5180AAD5000310081 /* pic1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic1.jpg; sourceTree = "<group>"; };
+		58D691F6180AAD5000310081 /* pic2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic2.jpg; sourceTree = "<group>"; };
+		58D691F7180AAD5000310081 /* pic3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic3.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +275,7 @@
 		582816FC180337C200AC5F7D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				58D691F4180AAD5000310081 /* Resources */,
 				582816EA180337BB00AC5F7D /* InfoPlist.strings */,
 				582816EC180337BB00AC5F7D /* FaceDetector-Info.plist */,
 				582816ED180337BB00AC5F7D /* FaceDetector-Prefix.pch */,
@@ -446,6 +456,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		58D691F4180AAD5000310081 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				58D691F5180AAD5000310081 /* pic1.jpg */,
+				58D691F6180AAD5000310081 /* pic2.jpg */,
+				58D691F7180AAD5000310081 /* pic3.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -523,9 +543,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				582816F6180337BB00AC5F7D /* FaceDetector-Info.plist in Resources */,
+				58D691FA180AAD5000310081 /* pic2.jpg in Resources */,
+				58D691F8180AAD5000310081 /* pic1.jpg in Resources */,
 				582816F8180337BB00AC5F7D /* Images.xcassets in Resources */,
 				582816F2180337BB00AC5F7D /* Main.storyboard in Resources */,
 				582816F4180337BB00AC5F7D /* InfoPlist.strings in Resources */,
+				58D691FC180AAD5000310081 /* pic3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,8 +558,11 @@
 			files = (
 				5890F3CB18031B7A00872B41 /* InfoPlist.strings in Resources */,
 				582816F9180337BB00AC5F7D /* Images.xcassets in Resources */,
+				58D691FB180AAD5000310081 /* pic2.jpg in Resources */,
 				582816F5180337BB00AC5F7D /* InfoPlist.strings in Resources */,
 				582816F3180337BB00AC5F7D /* Main.storyboard in Resources */,
+				58D691F9180AAD5000310081 /* pic1.jpg in Resources */,
+				58D691FD180AAD5000310081 /* pic3.jpg in Resources */,
 				582816F7180337BB00AC5F7D /* FaceDetector-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
