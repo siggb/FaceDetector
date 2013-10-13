@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext
+END
+NSManagedObjectContext+MagicalSaves.m
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalSaves.m
+END
+NSManagedObjectContext+MagicalThreading.m
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalThreading.m
+END
+NSManagedObjectContext+MagicalObserving.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalObserving.h
+END
+NSManagedObjectContext+MagicalRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalRecord.h
+END
+NSManagedObjectContext+MagicalSaves.h
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalSaves.h
+END
+NSManagedObjectContext+MagicalObserving.m
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalObserving.m
+END
+NSManagedObjectContext+MagicalRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalRecord.m
+END
+NSManagedObjectContext+MagicalThreading.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectContext/NSManagedObjectContext+MagicalThreading.h
+END

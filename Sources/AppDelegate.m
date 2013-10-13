@@ -10,6 +10,16 @@
 
 @implementation AppDelegate
 
+- (id)init
+{
+	if ((self = [super init]))
+    {
+        // инициализация локального хранилища данных
+        [MagicalRecord setupAutoMigratingCoreDataStack];
+    }
+    return self;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -41,6 +51,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    // деинициализация локального хранилища данных
+    [MagicalRecord cleanUp];
 }
 
 @end

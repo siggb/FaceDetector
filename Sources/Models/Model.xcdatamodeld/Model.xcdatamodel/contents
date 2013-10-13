@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AbstractModel" representedClassName="AbstractModel" isAbstract="YES" syncable="YES">
+        <attribute name="pk" attributeType="Integer 32" minValueString="1" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="PhotoModel" representedClassName="PhotoModel" parentEntity="AbstractModel" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="fileSize" attributeType="Integer 64" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="photo" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AbstractModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PhotoModel" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

@@ -500,6 +500,12 @@
 - (IBAction)takePhotoClicked:(UIButton*)sender
 {
     NSLog(@"- Click!");
+    
+    PhotoModel *model = [PhotoModel MR_createEntity];
+    model.pk = @1;
+    model.photo = [UIImage imageNamed:@"FaceSquare"];
+    model.createdDate = [NSDate date];
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
 /**

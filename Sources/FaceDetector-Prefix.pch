@@ -22,7 +22,13 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 // External Libraries
+#import "CoreData+MagicalRecord.h"
+#import "MagicalRecord.h"
 #import "NYXImagesKit.h"
+
+// Networking and Models
+#import "AbstractModel.h"
+#import "PhotoModel.h"
 
 // Basic Defines
 #define YellowCGColor       [[UIColor colorWithRed:253.f/255.f green:228.f/255.f blue:62.f/255.f alpha:1.f] CGColor]

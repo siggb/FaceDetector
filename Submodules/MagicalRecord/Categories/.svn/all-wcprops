@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories
+END
+NSPersistentStoreCoordinator+MagicalRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSPersistentStoreCoordinator+MagicalRecord.h
+END
+NSPersistentStore+MagicalRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSPersistentStore+MagicalRecord.m
+END
+NSManagedObjectModel+MagicalRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectModel+MagicalRecord.h
+END
+NSPersistentStoreCoordinator+MagicalRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSPersistentStoreCoordinator+MagicalRecord.m
+END
+NSManagedObjectModel+MagicalRecord.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSManagedObjectModel+MagicalRecord.m
+END
+NSPersistentStore+MagicalRecord.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/subversion/messenger-ios/!svn/ver/512/trunk/Submodules/MagicalRecord/Categories/NSPersistentStore+MagicalRecord.h
+END
