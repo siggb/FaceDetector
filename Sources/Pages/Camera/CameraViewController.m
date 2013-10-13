@@ -411,19 +411,29 @@
             [[previewLayer session] removeInput:old_input];
         }
         
+        // при смене камеры меняет высоту слоя превью,
+        // чтобы картинка видео-потока отображалась над таббаром
+        CALayer *root_layer = [self.previewView layer];
+        CGRect rect = root_layer.frame;
+        
         // меняем размеры фрейма сессии устройства захвата видео потока
         switch ([dev position]) {
             case AVCaptureDevicePositionBack:
+                rect.size.height = 568.f;
                 [[previewLayer session] setSessionPreset:AVCaptureSessionPresetiFrame960x540];
                 break;
                 
             case AVCaptureDevicePositionFront:
+                rect.size.height = 427.f;
                 [[previewLayer session] setSessionPreset:AVCaptureSessionPreset640x480];
                 break;
                 
             default:
                 break;
         }
+        
+        root_layer.frame = rect;
+        [previewLayer setFrame:rect];
         
         // связываем устройство захвата с текущей сессией
         if ([[previewLayer session] canAddInput:new_input]) {
