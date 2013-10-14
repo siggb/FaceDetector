@@ -34,10 +34,13 @@
 // Basic Defines
 #define YellowCGColor       [[UIColor colorWithRed:253.f/255.f green:228.f/255.f blue:62.f/255.f alpha:1.f] CGColor]
 #define WhiteCGColor        [[UIColor whiteColor] CGColor]
+
 #define FaceLayerName       @"FaceLayer"
 #define LeftEyeLayerName    @"LeftEyeLayer"
 #define RightEyeLayerName   @"RightEyeLayer"
 #define MouthLayerName      @"MouthLayer"
+
 #define PhotoModelIDKey     @"PhotoModelID"
+#define StoreCellIdentifier @"StoreCellIdentifier"
 
 #endif
