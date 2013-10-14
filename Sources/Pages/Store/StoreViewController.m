@@ -7,13 +7,15 @@
 //
 
 #import "StoreViewController.h"
+#import "DetailViewController.h"
 
 @interface StoreViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic) IBOutlet UITableView *tableViewItem;
+@property (nonatomic, weak) IBOutlet UITableView *tableViewItem;
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
+
 
 
 @implementation StoreViewController
@@ -33,6 +35,17 @@
     
     self.tableViewItem = nil;
     self.fetchedResultsController = nil;
+}
+
+#pragma mark - Вспомогательные методы
+
++ (NSDateFormatter*)visualDateFormatter
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.locale = [NSLocale currentLocale];
+    [df setDateFormat:@"d MMMM yyyy HH:mm"];
+    [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"MSK"]];
+    return df;
 }
 
 #pragma mark - Методы NSFetchedResultsController
@@ -142,9 +155,26 @@
     
     PhotoModel *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell.imageView setImage:model.photo];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@", model.createdDate.description]];
+    [cell.textLabel setText:[[StoreViewController visualDateFormatter] stringFromDate:[model createdDate]]];
     
     return cell;
+}
+
+#pragma mark - Методы UIStoryboardSegue
+
+/**
+ *  Метод подготовки переходов между текущим контроллером и дочерними
+ */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // обработка нажатия по ячейке таблицы - переход к деталке
+    if ([segue.identifier isEqualToString:@"PushSegueFromStoreVCToDetailVC"]) {
+        NSIndexPath *index_path = [self.tableViewItem indexPathForSelectedRow];
+        [self.tableViewItem deselectRowAtIndexPath:index_path animated:YES];
+        
+        DetailViewController *detail_vc = segue.destinationViewController;
+        [detail_vc setPhotoModel:[self.fetchedResultsController objectAtIndexPath:index_path]];
+    }
 }
 
 @end

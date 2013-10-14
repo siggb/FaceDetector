@@ -20,6 +20,8 @@
 		58172F501803E0E5008E305E /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F4E1803E0E5008E305E /* InfoViewController.m */; };
 		58172F531803E0F7008E305E /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F521803E0F7008E305E /* StoreViewController.m */; };
 		58172F541803E0F7008E305E /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58172F521803E0F7008E305E /* StoreViewController.m */; };
+		5825FEA0180C4DCB008445B7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5825FE9F180C4DCB008445B7 /* DetailViewController.m */; };
+		5825FEA1180C4DCB008445B7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5825FE9F180C4DCB008445B7 /* DetailViewController.m */; };
 		582816F0180337BB00AC5F7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 582816E7180337BB00AC5F7D /* AppDelegate.m */; };
 		582816F1180337BB00AC5F7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 582816E7180337BB00AC5F7D /* AppDelegate.m */; };
 		582816F2180337BB00AC5F7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582816E8180337BB00AC5F7D /* Main.storyboard */; };
@@ -82,6 +84,8 @@
 		582817D6180338A800AC5F7D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58281772180338A800AC5F7D /* Reachability.m */; };
 		58424A5B180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */; };
 		58424A5C180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */; };
+		58538B9F180C606F00C631A3 /* NSNumber+StringFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 58538B9E180C606F00C631A3 /* NSNumber+StringFileSize.m */; };
+		58538BA0180C606F00C631A3 /* NSNumber+StringFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 58538B9E180C606F00C631A3 /* NSNumber+StringFileSize.m */; };
 		5890F39C18031B7900872B41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39B18031B7900872B41 /* Foundation.framework */; };
 		5890F39E18031B7900872B41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39D18031B7900872B41 /* CoreGraphics.framework */; };
 		5890F3A018031B7900872B41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39F18031B7900872B41 /* UIKit.framework */; };
@@ -184,6 +188,8 @@
 		58172F4E1803E0E5008E305E /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		58172F511803E0F7008E305E /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		58172F521803E0F7008E305E /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
+		5825FE9E180C4DCB008445B7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		5825FE9F180C4DCB008445B7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		582816E6180337BB00AC5F7D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		582816E7180337BB00AC5F7D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		582816E9180337BB00AC5F7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 		58281772180338A800AC5F7D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		58424A59180BB5EB00A16CD6 /* PhotoModel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoModel+Addition.h"; sourceTree = "<group>"; };
 		58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoModel+Addition.m"; sourceTree = "<group>"; };
+		58538B9D180C606F00C631A3 /* NSNumber+StringFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+StringFileSize.h"; sourceTree = "<group>"; };
+		58538B9E180C606F00C631A3 /* NSNumber+StringFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+StringFileSize.m"; sourceTree = "<group>"; };
 		5890F39818031B7900872B41 /* FaceDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5890F39B18031B7900872B41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5890F39D18031B7900872B41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -382,10 +390,21 @@
 		58172F481803E0BF008E305E /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				58538B9C180C606F00C631A3 /* Additional */,
+				5825FE9D180C4DB8008445B7 /* Detail */,
 				58172F511803E0F7008E305E /* StoreViewController.h */,
 				58172F521803E0F7008E305E /* StoreViewController.m */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		5825FE9D180C4DB8008445B7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5825FE9E180C4DCB008445B7 /* DetailViewController.h */,
+				5825FE9F180C4DCB008445B7 /* DetailViewController.m */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		582816E5180337BB00AC5F7D /* Sources */ = {
@@ -537,6 +556,15 @@
 				58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		58538B9C180C606F00C631A3 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				58538B9D180C606F00C631A3 /* NSNumber+StringFileSize.h */,
+				58538B9E180C606F00C631A3 /* NSNumber+StringFileSize.m */,
+			);
+			path = Additional;
 			sourceTree = "<group>";
 		};
 		5890F38F18031B7900872B41 = {
@@ -851,6 +879,7 @@
 				58E5FA28180AC34500EB3A8B /* MagicalImportFunctions.m in Sources */,
 				582817C5180338A800AC5F7D /* UIImage+Reflection.m in Sources */,
 				58E5FA30180AC34500EB3A8B /* NSObject+MagicalDataImport.m in Sources */,
+				58538B9F180C606F00C631A3 /* NSNumber+StringFileSize.m in Sources */,
 				58281773180338A800AC5F7D /* AFDownloadRequestOperation.m in Sources */,
 				58E5FA38180AC34500EB3A8B /* NSManagedObject+MagicalDataImport.m in Sources */,
 				582817BF180338A800AC5F7D /* UIImage+Enhancing.m in Sources */,
@@ -878,6 +907,7 @@
 				58E5FA40180AC34500EB3A8B /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				582817CF180338A800AC5F7D /* UIView+Screenshot.m in Sources */,
 				582817CB180338A800AC5F7D /* UIImage+Saving.m in Sources */,
+				5825FEA0180C4DCB008445B7 /* DetailViewController.m in Sources */,
 				58E5FA5A180AC34500EB3A8B /* MagicalRecord.m in Sources */,
 				582817C9180338A800AC5F7D /* UIImage+Rotating.m in Sources */,
 				582817BD180338A800AC5F7D /* UIImage+Blurring.m in Sources */,
@@ -914,6 +944,7 @@
 				582817C2180338A800AC5F7D /* UIImage+Filtering.m in Sources */,
 				58172F4C1803E0D5008E305E /* CameraViewController.m in Sources */,
 				58E5FA29180AC34500EB3A8B /* MagicalImportFunctions.m in Sources */,
+				5825FEA1180C4DCB008445B7 /* DetailViewController.m in Sources */,
 				58281778180338A800AC5F7D /* AFHTTPRequestOperation.m in Sources */,
 				58E5FA3B180AC34500EB3A8B /* NSManagedObject+MagicalFinders.m in Sources */,
 				582817BE180338A800AC5F7D /* UIImage+Blurring.m in Sources */,
@@ -923,6 +954,7 @@
 				58281776180338A800AC5F7D /* AFHTTPClient.m in Sources */,
 				58E5FA57180AC34500EB3A8B /* MagicalRecord+Setup.m in Sources */,
 				58E5FA2F180AC34500EB3A8B /* NSNumber+MagicalDataImport.m in Sources */,
+				58538BA0180C606F00C631A3 /* NSNumber+StringFileSize.m in Sources */,
 				58E5FA62180AD3CC00EB3A8B /* Model.xcdatamodeld in Sources */,
 				58E5FA39180AC34500EB3A8B /* NSManagedObject+MagicalDataImport.m in Sources */,
 				58E5FA55180AC34500EB3A8B /* MagicalRecord+Options.m in Sources */,

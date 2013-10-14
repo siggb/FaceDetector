@@ -501,7 +501,8 @@
 {
     NSLog(@"- Click!");
     
-    PhotoModel *model = [PhotoModel createEntity:[UIImage imageNamed:@"FaceSquare"] createdDate:[NSDate date]];
+    PhotoModel *model = [PhotoModel createEntity:[self.previewView imageByRenderingView]
+                                     createdDate:[NSDate date]];
     NSLog(@"model = %@", model);
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
