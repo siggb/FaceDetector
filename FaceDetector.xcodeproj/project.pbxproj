@@ -80,6 +80,8 @@
 		582817D4180338A800AC5F7D /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5828176E180338A800AC5F7D /* NYXImagesHelper.m */; };
 		582817D5180338A800AC5F7D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58281772180338A800AC5F7D /* Reachability.m */; };
 		582817D6180338A800AC5F7D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58281772180338A800AC5F7D /* Reachability.m */; };
+		58424A5B180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */; };
+		58424A5C180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */; };
 		5890F39C18031B7900872B41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39B18031B7900872B41 /* Foundation.framework */; };
 		5890F39E18031B7900872B41 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39D18031B7900872B41 /* CoreGraphics.framework */; };
 		5890F3A018031B7900872B41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5890F39F18031B7900872B41 /* UIKit.framework */; };
@@ -240,6 +242,8 @@
 		5828176F180338A800AC5F7D /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
 		58281771180338A800AC5F7D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		58281772180338A800AC5F7D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		58424A59180BB5EB00A16CD6 /* PhotoModel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoModel+Addition.h"; sourceTree = "<group>"; };
+		58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoModel+Addition.m"; sourceTree = "<group>"; };
 		5890F39818031B7900872B41 /* FaceDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5890F39B18031B7900872B41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5890F39D18031B7900872B41 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -526,6 +530,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		58424A58180BB5C900A16CD6 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				58424A59180BB5EB00A16CD6 /* PhotoModel+Addition.h */,
+				58424A5A180BB5EB00A16CD6 /* PhotoModel+Addition.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		5890F38F18031B7900872B41 = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +712,7 @@
 			children = (
 				58E5FA74180AD58000EB3A8B /* AbstractModel.h */,
 				58E5FA75180AD58000EB3A8B /* AbstractModel.m */,
+				58424A58180BB5C900A16CD6 /* Categories */,
 				58E5FA5F180AD3CC00EB3A8B /* Model.xcdatamodeld */,
 				58E5FA70180AD57F00EB3A8B /* PhotoModel.h */,
 				58E5FA71180AD57F00EB3A8B /* PhotoModel.m */,
@@ -846,6 +860,7 @@
 				58E5FA54180AC34500EB3A8B /* MagicalRecord+Options.m in Sources */,
 				58281785180338A800AC5F7D /* AFXMLRequestOperation.m in Sources */,
 				582816FA180337BB00AC5F7D /* main.m in Sources */,
+				58424A5B180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */,
 				58E5FA50180AC34500EB3A8B /* MagicalRecord+ErrorHandling.m in Sources */,
 				5828177B180338A800AC5F7D /* AFJSONRequestOperation.m in Sources */,
 				582817D3180338A800AC5F7D /* NYXImagesHelper.m in Sources */,
@@ -921,6 +936,7 @@
 				58281780180338A800AC5F7D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				58E5FA37180AC34500EB3A8B /* NSManagedObject+MagicalAggregation.m in Sources */,
 				58172F541803E0F7008E305E /* StoreViewController.m in Sources */,
+				58424A5C180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */,
 				582817C8180338A800AC5F7D /* UIImage+Resizing.m in Sources */,
 				582817D0180338A800AC5F7D /* UIView+Screenshot.m in Sources */,
 				58E5FA35180AC34500EB3A8B /* NSString+MagicalDataImport.m in Sources */,

@@ -501,10 +501,8 @@
 {
     NSLog(@"- Click!");
     
-    PhotoModel *model = [PhotoModel MR_createEntity];
-    model.pk = @1;
-    model.photo = [UIImage imageNamed:@"FaceSquare"];
-    model.createdDate = [NSDate date];
+    PhotoModel *model = [PhotoModel createEntity:[UIImage imageNamed:@"FaceSquare"] createdDate:[NSDate date]];
+    NSLog(@"model = %@", model);
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
