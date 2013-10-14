@@ -134,17 +134,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpS-Cd-GKk">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qpS-Cd-GKk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK0-AY-ahN">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK0-AY-ahN">
                                 <rect key="frame" x="274" y="240" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="xar-4K-Xo2"/>
-                                </constraints>
                                 <state key="normal" title="Click!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -152,7 +149,7 @@
                                     <action selector="takePhotoClicked:" destination="yx1-aX-vgb" eventType="touchUpInside" id="V1a-ee-pz4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Hc-hBu">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHC-Hc-hBu">
                                 <rect key="frame" x="274" y="200" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Flip">
@@ -164,17 +161,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qpS-Cd-GKk" firstAttribute="trailing" secondItem="oK0-AY-ahN" secondAttribute="trailing" id="1EN-gK-hLH"/>
-                            <constraint firstItem="oK0-AY-ahN" firstAttribute="leading" secondItem="XHC-Hc-hBu" secondAttribute="leading" id="2em-Jz-pfz"/>
-                            <constraint firstItem="oK0-AY-ahN" firstAttribute="top" secondItem="XHC-Hc-hBu" secondAttribute="bottom" constant="10" id="8ji-Xs-bqh"/>
-                            <constraint firstItem="qpS-Cd-GKk" firstAttribute="top" secondItem="asa-Ed-oMI" secondAttribute="top" id="Bgg-Vi-UAm"/>
-                            <constraint firstItem="qpS-Cd-GKk" firstAttribute="trailing" secondItem="XHC-Hc-hBu" secondAttribute="trailing" id="D9I-EJ-r1D"/>
-                            <constraint firstAttribute="bottom" secondItem="qpS-Cd-GKk" secondAttribute="bottom" id="RsO-WY-jBM"/>
-                            <constraint firstItem="qpS-Cd-GKk" firstAttribute="leading" secondItem="asa-Ed-oMI" secondAttribute="leading" id="Tyr-L4-PVK"/>
-                            <constraint firstAttribute="trailing" secondItem="qpS-Cd-GKk" secondAttribute="trailing" id="YWr-Dc-Lfy"/>
-                            <constraint firstItem="RLx-gi-J1G" firstAttribute="top" secondItem="oK0-AY-ahN" secondAttribute="bottom" constant="249" id="e9X-h3-OdX"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="8aY-kv-eyU"/>
                     <connections>
