@@ -2,7 +2,7 @@
 //  PhotoModel.h
 //  FaceDetector
 //
-//  Created by Ildar Sibagatov on 13.10.13.
+//  Created by Ildar Sibagatov on 14.10.13.
 //  Copyright (c) 2013 Sig Inc. All rights reserved.
 //
 
@@ -13,8 +13,8 @@
 
 @interface PhotoModel : AbstractModel
 
-@property (nonatomic, retain) id photo;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSNumber * fileSize;
+@property (nonatomic, retain) id photo;
 
 @end

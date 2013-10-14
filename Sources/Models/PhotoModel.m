@@ -2,7 +2,7 @@
 //  PhotoModel.m
 //  FaceDetector
 //
-//  Created by Ildar Sibagatov on 13.10.13.
+//  Created by Ildar Sibagatov on 14.10.13.
 //  Copyright (c) 2013 Sig Inc. All rights reserved.
 //
 
@@ -11,8 +11,8 @@
 
 @implementation PhotoModel
 
-@dynamic photo;
 @dynamic createdDate;
 @dynamic fileSize;
+@dynamic photo;
 
 @end

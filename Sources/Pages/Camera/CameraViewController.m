@@ -21,6 +21,9 @@
     CGFloat effectiveScale;
     
     CIDetector *faceDetector;
+    
+    UIImage *currentVideoFrame;
+    UIDeviceOrientation currentVideoFrameDeviceOrientation;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *previewView;
@@ -111,7 +114,7 @@
     
     // создаем слой для отображения видео с устройства захвата
 	previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-	[previewLayer setBackgroundColor:[[UIColor whiteColor] CGColor]];
+	[previewLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
 	[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
 	
     CALayer *root_layer = [self.previewView layer];
@@ -149,12 +152,21 @@
                                                                 sampleBuffer,
                                                                 kCMAttachmentMode_ShouldPropagate);
     
+    // сохраняем текущую картинку для создания снимка
+    CGImageRef src_image = NULL;
+    CreateCGImageFromCVPixelBuffer(CMSampleBufferGetImageBuffer(sampleBuffer), &src_image);
+    if (src_image) {
+        currentVideoFrame = [UIImage imageWithCGImage:src_image];
+        CFRelease(src_image);
+    }
+    
 	CIImage *ci_image = [[CIImage alloc] initWithCVPixelBuffer:pixel_buffer
                                                        options:(__bridge NSDictionary *)attachments];
     (attachments)?CFRelease(attachments):nil;
     
     NSNumber *detected_orientation = nil;
     UIDeviceOrientation current_orientation = [[UIDevice currentDevice] orientation];
+    currentVideoFrameDeviceOrientation = current_orientation;
     
     switch (current_orientation) {
         case UIDeviceOrientationPortrait:
@@ -501,7 +513,46 @@
 {
     NSLog(@"- Click!");
     
-    PhotoModel *model = [PhotoModel createEntity:[self.previewView imageByRenderingView]
+    UIGraphicsBeginImageContextWithOptions(previewLayer.bounds.size, previewLayer.opaque, 0.0f);
+	[previewLayer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage *preview_layer_image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+    
+    switch (currentVideoFrameDeviceOrientation) {
+        case UIDeviceOrientationPortrait:
+            currentVideoFrame = [currentVideoFrame rotateInDegrees:-90.f];
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            currentVideoFrame = [currentVideoFrame rotateInDegrees:90.f];
+            break;
+            
+        case UIDeviceOrientationLandscapeLeft:
+            // nothing to do here
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            currentVideoFrame = [currentVideoFrame rotateInDegrees:180.f];
+            break;
+            
+        default:
+            currentVideoFrame = [currentVideoFrame rotateInDegrees:-90.f];
+            break;
+	}
+    
+    NSLog(@"preview size: %@, frame size: %@",
+          NSStringFromCGSize(preview_layer_image.size), NSStringFromCGSize(currentVideoFrame.size));
+    
+    preview_layer_image = [preview_layer_image scaleToFitSize:currentVideoFrame.size];
+    NSLog(@"new preview size: %@", NSStringFromCGSize(preview_layer_image.size));
+    
+    UIGraphicsBeginImageContextWithOptions(currentVideoFrame.size, NO, 0.0f);
+    [currentVideoFrame drawInRect:CGRectMake(0, 0, currentVideoFrame.size.width, currentVideoFrame.size.height)];
+    [preview_layer_image drawInRect:CGRectMake(0, 0, preview_layer_image.size.width, preview_layer_image.size.height)];
+    UIImage *result_image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    PhotoModel *model = [PhotoModel createEntity:result_image
                                      createdDate:[NSDate date]];
     NSLog(@"model = %@", model);
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];

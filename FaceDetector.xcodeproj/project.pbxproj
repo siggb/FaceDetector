@@ -100,6 +100,8 @@
 		58D691FB180AAD5000310081 /* pic2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F6180AAD5000310081 /* pic2.jpg */; };
 		58D691FC180AAD5000310081 /* pic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F7180AAD5000310081 /* pic3.jpg */; };
 		58D691FD180AAD5000310081 /* pic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58D691F7180AAD5000310081 /* pic3.jpg */; };
+		58DE65A9180C741400AA7D45 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DE65A8180C741400AA7D45 /* PhotoModel.m */; };
+		58DE65AA180C741400AA7D45 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DE65A8180C741400AA7D45 /* PhotoModel.m */; };
 		58E5FA28180AC34500EB3A8B /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5F9F0180AC34400EB3A8B /* MagicalImportFunctions.m */; };
 		58E5FA29180AC34500EB3A8B /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5F9F0180AC34400EB3A8B /* MagicalImportFunctions.m */; };
 		58E5FA2A180AC34500EB3A8B /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5F9F2180AC34400EB3A8B /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -157,8 +159,6 @@
 		58E5FA62180AD3CC00EB3A8B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA5F180AD3CC00EB3A8B /* Model.xcdatamodeld */; };
 		58E5FA6E180AD47500EB3A8B /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA6D180AD47500EB3A8B /* ImageToDataTransformer.m */; };
 		58E5FA6F180AD47500EB3A8B /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA6D180AD47500EB3A8B /* ImageToDataTransformer.m */; };
-		58E5FA72180AD57F00EB3A8B /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA71180AD57F00EB3A8B /* PhotoModel.m */; };
-		58E5FA73180AD57F00EB3A8B /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA71180AD57F00EB3A8B /* PhotoModel.m */; };
 		58E5FA76180AD58000EB3A8B /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA75180AD58000EB3A8B /* AbstractModel.m */; };
 		58E5FA77180AD58000EB3A8B /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA75180AD58000EB3A8B /* AbstractModel.m */; };
 /* End PBXBuildFile section */
@@ -264,6 +264,8 @@
 		58D691F5180AAD5000310081 /* pic1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic1.jpg; sourceTree = "<group>"; };
 		58D691F6180AAD5000310081 /* pic2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic2.jpg; sourceTree = "<group>"; };
 		58D691F7180AAD5000310081 /* pic3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic3.jpg; sourceTree = "<group>"; };
+		58DE65A7180C741400AA7D45 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		58DE65A8180C741400AA7D45 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		58E5F9EF180AC34400EB3A8B /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		58E5F9F0180AC34400EB3A8B /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		58E5F9F1180AC34400EB3A8B /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -322,8 +324,6 @@
 		58E5FA60180AD3CC00EB3A8B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		58E5FA6C180AD47500EB3A8B /* ImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToDataTransformer.h; sourceTree = "<group>"; };
 		58E5FA6D180AD47500EB3A8B /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
-		58E5FA70180AD57F00EB3A8B /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
-		58E5FA71180AD57F00EB3A8B /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		58E5FA74180AD58000EB3A8B /* AbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModel.h; sourceTree = "<group>"; };
 		58E5FA75180AD58000EB3A8B /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -742,8 +742,8 @@
 				58E5FA75180AD58000EB3A8B /* AbstractModel.m */,
 				58424A58180BB5C900A16CD6 /* Categories */,
 				58E5FA5F180AD3CC00EB3A8B /* Model.xcdatamodeld */,
-				58E5FA70180AD57F00EB3A8B /* PhotoModel.h */,
-				58E5FA71180AD57F00EB3A8B /* PhotoModel.m */,
+				58DE65A7180C741400AA7D45 /* PhotoModel.h */,
+				58DE65A8180C741400AA7D45 /* PhotoModel.m */,
 				58E5FA6B180AD47500EB3A8B /* ValueTransformers */,
 			);
 			path = Models;
@@ -890,6 +890,7 @@
 				58281785180338A800AC5F7D /* AFXMLRequestOperation.m in Sources */,
 				582816FA180337BB00AC5F7D /* main.m in Sources */,
 				58424A5B180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */,
+				58DE65A9180C741400AA7D45 /* PhotoModel.m in Sources */,
 				58E5FA50180AC34500EB3A8B /* MagicalRecord+ErrorHandling.m in Sources */,
 				5828177B180338A800AC5F7D /* AFJSONRequestOperation.m in Sources */,
 				582817D3180338A800AC5F7D /* NYXImagesHelper.m in Sources */,
@@ -898,7 +899,6 @@
 				58E5FA42180AC34500EB3A8B /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				58E5FA4E180AC34500EB3A8B /* MagicalRecord+Actions.m in Sources */,
 				58E5FA56180AC34500EB3A8B /* MagicalRecord+Setup.m in Sources */,
-				58E5FA72180AD57F00EB3A8B /* PhotoModel.m in Sources */,
 				58E5FA4A180AC34500EB3A8B /* NSPersistentStore+MagicalRecord.m in Sources */,
 				58E5FA6E180AD47500EB3A8B /* ImageToDataTransformer.m in Sources */,
 				58281777180338A800AC5F7D /* AFHTTPRequestOperation.m in Sources */,
@@ -938,12 +938,12 @@
 				58E5FA49180AC34500EB3A8B /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				5828177E180338A800AC5F7D /* AFJSONUtilities.m in Sources */,
 				582817D4180338A800AC5F7D /* NYXImagesHelper.m in Sources */,
-				58E5FA73180AD57F00EB3A8B /* PhotoModel.m in Sources */,
 				5828177A180338A800AC5F7D /* AFImageRequestOperation.m in Sources */,
 				582817C4180338A800AC5F7D /* UIImage+Masking.m in Sources */,
 				582817C2180338A800AC5F7D /* UIImage+Filtering.m in Sources */,
 				58172F4C1803E0D5008E305E /* CameraViewController.m in Sources */,
 				58E5FA29180AC34500EB3A8B /* MagicalImportFunctions.m in Sources */,
+				58DE65AA180C741400AA7D45 /* PhotoModel.m in Sources */,
 				5825FEA1180C4DCB008445B7 /* DetailViewController.m in Sources */,
 				58281778180338A800AC5F7D /* AFHTTPRequestOperation.m in Sources */,
 				58E5FA3B180AC34500EB3A8B /* NSManagedObject+MagicalFinders.m in Sources */,
