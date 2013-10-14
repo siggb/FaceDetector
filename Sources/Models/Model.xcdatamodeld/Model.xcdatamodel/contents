@@ -6,7 +6,7 @@
     <entity name="PhotoModel" representedClassName="PhotoModel" parentEntity="AbstractModel" syncable="YES">
         <attribute name="createdDate" attributeType="Date" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 64" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="photo" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="photo" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="AbstractModel" positionX="0" positionY="0" width="0" height="0"/>
