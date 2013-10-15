@@ -511,7 +511,7 @@
             previewLayerImage:(UIImage*)previewLayerImage
          forDeviceOrientation:(UIDeviceOrientation)currentDeviceOrientation
 {
-    // поворачиваем кадр видео потока
+    // поворачиваем кадр видео-потока
     CGFloat frame_rotation_degrees = 0.f;
     CGFloat preview_rotation_degrees = 0.f;
     NSLog(@"current_device_orientation : %ld", (long)currentDeviceOrientation);
@@ -557,8 +557,8 @@
         previewLayerImage = [previewLayerImage rotateInDegrees:preview_rotation_degrees];
     }
     
-    NSLog(@"preview size: %@, frame size: %@",
-          NSStringFromCGSize(previewLayerImage.size), NSStringFromCGSize(currentFrameImage.size));
+    NSLog(@"preview size: %@", NSStringFromCGSize(previewLayerImage.size));
+    NSLog(@"frame size: %@", NSStringFromCGSize(currentFrameImage.size));
     
     // масштабируем слой с признаками до размеров кадра видео потока (сохраняя пропорции)
     previewLayerImage = [previewLayerImage scaleToFitSize:currentFrameImage.size];
@@ -574,7 +574,7 @@
     // полученное финальное изображение сохраняем в модели локальной БД
     PhotoModel *model = [PhotoModel createEntity:result_image
                                      createdDate:[NSDate date]];
-    NSLog(@"model = %@", model);
+    NSLog(@"model : %@", model);
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
@@ -597,6 +597,7 @@
 	UIImage *preview_layer_image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
     
+    // в фоне производим окончательные правки снимка и его сохранение в БД
     __weak CameraViewController *weak_self = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, (unsigned long)NULL), ^(void) {
         [weak_self prepareAndSavePicture:current_frame_image
