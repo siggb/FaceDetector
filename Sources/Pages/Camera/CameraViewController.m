@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "CameraVCAdditions.h"
+#import "UIImage+Flip.h"
 
 @interface CameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, UIGestureRecognizerDelegate>
 {
@@ -504,6 +505,79 @@
     }
 }
 
+#pragma mark - Методы подготовки и сохранения изображений
+
+- (void)prepareAndSavePicture:(UIImage*)currentFrameImage
+            previewLayerImage:(UIImage*)previewLayerImage
+         forDeviceOrientation:(UIDeviceOrientation)currentDeviceOrientation
+{
+    // поворачиваем кадр видео потока
+    CGFloat frame_rotation_degrees = 0.f;
+    CGFloat preview_rotation_degrees = 0.f;
+    NSLog(@"current_device_orientation : %ld", (long)currentDeviceOrientation);
+	switch (currentDeviceOrientation) {
+		case UIDeviceOrientationPortrait:
+			frame_rotation_degrees = -90.f;
+			break;
+            
+		case UIDeviceOrientationPortraitUpsideDown:
+			frame_rotation_degrees = 90.f;
+			break;
+            
+		case UIDeviceOrientationLandscapeLeft: {
+            preview_rotation_degrees = 90.f;
+            if (isUsingFrontFacingCamera)
+                frame_rotation_degrees = 180.f;
+            else
+                frame_rotation_degrees = 0.f;
+        } break;
+            
+		case UIDeviceOrientationLandscapeRight: {
+            preview_rotation_degrees = -90.f;
+            if (isUsingFrontFacingCamera)
+                frame_rotation_degrees = 0.f;
+            else
+                frame_rotation_degrees = 180.f;
+        } break;
+            
+		case UIDeviceOrientationFaceUp:
+		case UIDeviceOrientationFaceDown:
+		default: break;
+	}
+    
+    if (frame_rotation_degrees != 0.f) {
+        currentFrameImage = [currentFrameImage rotateInDegrees:frame_rotation_degrees];
+    }
+    
+    if (isUsingFrontFacingCamera) {
+        currentFrameImage = [currentFrameImage theHorizontalFlip];
+    }
+    
+    if (preview_rotation_degrees != 0.f) {
+        previewLayerImage = [previewLayerImage rotateInDegrees:preview_rotation_degrees];
+    }
+    
+    NSLog(@"preview size: %@, frame size: %@",
+          NSStringFromCGSize(previewLayerImage.size), NSStringFromCGSize(currentFrameImage.size));
+    
+    // масштабируем слой с признаками до размеров кадра видео потока (сохраняя пропорции)
+    previewLayerImage = [previewLayerImage scaleToFitSize:currentFrameImage.size];
+    NSLog(@"new preview size: %@", NSStringFromCGSize(previewLayerImage.size));
+    
+    // объединяем два изображения в одно (признаки лица и кадр видео потока)
+    UIGraphicsBeginImageContextWithOptions(currentFrameImage.size, NO, 0.0f);
+    [currentFrameImage drawInRect:CGRectMake(0, 0, currentFrameImage.size.width, currentFrameImage.size.height)];
+    [previewLayerImage drawInRect:CGRectMake(0, 0, previewLayerImage.size.width, previewLayerImage.size.height)];
+    UIImage *result_image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // полученное финальное изображение сохраняем в модели локальной БД
+    PhotoModel *model = [PhotoModel createEntity:result_image
+                                     createdDate:[NSDate date]];
+    NSLog(@"model = %@", model);
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+}
+
 #pragma mark - Обработка нажатий по кнопкам
 
 /**
@@ -513,49 +587,22 @@
 {
     NSLog(@"- Click!");
     
+    // получаем текущие данные (т.к. значение в этих переменных динамично)
+    UIImage *current_frame_image = [UIImage imageWithCGImage:currentVideoFrame.CGImage];
+    UIDeviceOrientation current_device_orientation = currentVideoFrameDeviceOrientation;
+    
+    // преобразуем слой (с отмеченными признаками лица) в изображение
     UIGraphicsBeginImageContextWithOptions(previewLayer.bounds.size, previewLayer.opaque, 0.0f);
 	[previewLayer renderInContext:UIGraphicsGetCurrentContext()];
 	UIImage *preview_layer_image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
     
-    switch (currentVideoFrameDeviceOrientation) {
-        case UIDeviceOrientationPortrait:
-            currentVideoFrame = [currentVideoFrame rotateInDegrees:-90.f];
-            break;
-            
-        case UIDeviceOrientationPortraitUpsideDown:
-            currentVideoFrame = [currentVideoFrame rotateInDegrees:90.f];
-            break;
-            
-        case UIDeviceOrientationLandscapeLeft:
-            // nothing to do here
-            break;
-            
-        case UIDeviceOrientationLandscapeRight:
-            currentVideoFrame = [currentVideoFrame rotateInDegrees:180.f];
-            break;
-            
-        default:
-            currentVideoFrame = [currentVideoFrame rotateInDegrees:-90.f];
-            break;
-	}
-    
-    NSLog(@"preview size: %@, frame size: %@",
-          NSStringFromCGSize(preview_layer_image.size), NSStringFromCGSize(currentVideoFrame.size));
-    
-    preview_layer_image = [preview_layer_image scaleToFitSize:currentVideoFrame.size];
-    NSLog(@"new preview size: %@", NSStringFromCGSize(preview_layer_image.size));
-    
-    UIGraphicsBeginImageContextWithOptions(currentVideoFrame.size, NO, 0.0f);
-    [currentVideoFrame drawInRect:CGRectMake(0, 0, currentVideoFrame.size.width, currentVideoFrame.size.height)];
-    [preview_layer_image drawInRect:CGRectMake(0, 0, preview_layer_image.size.width, preview_layer_image.size.height)];
-    UIImage *result_image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    PhotoModel *model = [PhotoModel createEntity:result_image
-                                     createdDate:[NSDate date]];
-    NSLog(@"model = %@", model);
-    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+    __weak CameraViewController *weak_self = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, (unsigned long)NULL), ^(void) {
+        [weak_self prepareAndSavePicture:current_frame_image
+                       previewLayerImage:preview_layer_image
+                    forDeviceOrientation:current_device_orientation];
+    });
 }
 
 /**

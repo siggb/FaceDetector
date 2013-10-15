@@ -24,12 +24,12 @@
     }
     
     // увеличиваем на единицу (аналог автоинкремента в СУБД)
-    pk = @(pk.integerValue+1);
+    pk = @(pk.intValue+1);
     
     // в БД не должно существовать модели с таким PrimaryKey
     PhotoModel *model = [self findByPK:pk];
     if (model != nil) {
-        NSAssert(YES, @"Entity of PhotoModel with pk=%d already exists", pk.integerValue);
+        NSAssert(YES, @"Entity of PhotoModel with pk=%d already exists", pk.intValue);
     }
     
     // сохраняем текущий PK в настройках пользователя

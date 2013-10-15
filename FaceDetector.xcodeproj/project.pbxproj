@@ -159,6 +159,8 @@
 		58E5FA6F180AD47500EB3A8B /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA6D180AD47500EB3A8B /* ImageToDataTransformer.m */; };
 		58E5FA76180AD58000EB3A8B /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA75180AD58000EB3A8B /* AbstractModel.m */; };
 		58E5FA77180AD58000EB3A8B /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E5FA75180AD58000EB3A8B /* AbstractModel.m */; };
+		58F61026180D19A200016070 /* UIImage+Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F61025180D19A200016070 /* UIImage+Flip.m */; };
+		58F61027180D19A200016070 /* UIImage+Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F61025180D19A200016070 /* UIImage+Flip.m */; };
 		58FA434C180C90CA005FA1AD /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FA434B180C90CA005FA1AD /* PhotoModel.m */; };
 		58FA434D180C90CA005FA1AD /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FA434B180C90CA005FA1AD /* PhotoModel.m */; };
 /* End PBXBuildFile section */
@@ -324,6 +326,8 @@
 		58E5FA6D180AD47500EB3A8B /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
 		58E5FA74180AD58000EB3A8B /* AbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModel.h; sourceTree = "<group>"; };
 		58E5FA75180AD58000EB3A8B /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
+		58F61024180D19A200016070 /* UIImage+Flip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Flip.h"; sourceTree = "<group>"; };
+		58F61025180D19A200016070 /* UIImage+Flip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Flip.m"; sourceTree = "<group>"; };
 		58FA434A180C90CA005FA1AD /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		58FA434B180C90CA005FA1AD /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +368,8 @@
 			isa = PBXGroup;
 			children = (
 				5806DE6A18048E04007F1B67 /* CameraVCAdditions.h */,
+				58F61024180D19A200016070 /* UIImage+Flip.h */,
+				58F61025180D19A200016070 /* UIImage+Flip.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -905,6 +911,7 @@
 				58E5FA2C180AC34500EB3A8B /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				582816F0180337BB00AC5F7D /* AppDelegate.m in Sources */,
 				58E5FA40180AC34500EB3A8B /* NSManagedObjectContext+MagicalObserving.m in Sources */,
+				58F61026180D19A200016070 /* UIImage+Flip.m in Sources */,
 				582817CF180338A800AC5F7D /* UIView+Screenshot.m in Sources */,
 				582817CB180338A800AC5F7D /* UIImage+Saving.m in Sources */,
 				5825FEA0180C4DCB008445B7 /* DetailViewController.m in Sources */,
@@ -967,6 +974,7 @@
 				58281784180338A800AC5F7D /* AFURLConnectionOperation.m in Sources */,
 				58281780180338A800AC5F7D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				58E5FA37180AC34500EB3A8B /* NSManagedObject+MagicalAggregation.m in Sources */,
+				58F61027180D19A200016070 /* UIImage+Flip.m in Sources */,
 				58172F541803E0F7008E305E /* StoreViewController.m in Sources */,
 				58424A5C180BB5EB00A16CD6 /* PhotoModel+Addition.m in Sources */,
 				582817C8180338A800AC5F7D /* UIImage+Resizing.m in Sources */,
