@@ -144,6 +144,8 @@
 		58FA3AF618316FF3001E95A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58FA3AF518316FF3001E95A3 /* CFNetwork.framework */; };
 		58FA3B0318317AA9001E95A3 /* Rumpus-FTPServer.zip in Resources */ = {isa = PBXBuildFile; fileRef = 58FA3B0218317AA9001E95A3 /* Rumpus-FTPServer.zip */; };
 		58FA3B0418317AA9001E95A3 /* Rumpus-FTPServer.zip in Resources */ = {isa = PBXBuildFile; fileRef = 58FA3B0218317AA9001E95A3 /* Rumpus-FTPServer.zip */; };
+		58FA3B0618317C88001E95A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 58FA3B0518317C88001E95A3 /* README.md */; };
+		58FA3B0718317C88001E95A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 58FA3B0518317C88001E95A3 /* README.md */; };
 		58FA434C180C90CA005FA1AD /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FA434B180C90CA005FA1AD /* PhotoModel.m */; };
 		58FA434D180C90CA005FA1AD /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FA434B180C90CA005FA1AD /* PhotoModel.m */; };
 /* End PBXBuildFile section */
@@ -292,6 +294,7 @@
 		58FA3AF118316DC9001E95A3 /* SCRFTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRFTPRequest.m; sourceTree = "<group>"; };
 		58FA3AF518316FF3001E95A3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		58FA3B0218317AA9001E95A3 /* Rumpus-FTPServer.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "Rumpus-FTPServer.zip"; sourceTree = "<group>"; };
+		58FA3B0518317C88001E95A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		58FA434A180C90CA005FA1AD /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		58FA434B180C90CA005FA1AD /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -511,6 +514,7 @@
 		5890F38F18031B7900872B41 = {
 			isa = PBXGroup;
 			children = (
+				58FA3B0518317C88001E95A3 /* README.md */,
 				582816E5180337BB00AC5F7D /* Sources */,
 				582816FE180338A800AC5F7D /* Submodules */,
 				5890F3C618031B7A00872B41 /* FaceDetectorTests */,
@@ -792,6 +796,7 @@
 				582816F8180337BB00AC5F7D /* Images.xcassets in Resources */,
 				582816F2180337BB00AC5F7D /* Main.storyboard in Resources */,
 				582816F4180337BB00AC5F7D /* InfoPlist.strings in Resources */,
+				58FA3B0618317C88001E95A3 /* README.md in Resources */,
 				58D691FC180AAD5000310081 /* pic3.jpg in Resources */,
 				58FA3B0318317AA9001E95A3 /* Rumpus-FTPServer.zip in Resources */,
 			);
@@ -803,6 +808,7 @@
 			files = (
 				5890F3CB18031B7A00872B41 /* InfoPlist.strings in Resources */,
 				582816F9180337BB00AC5F7D /* Images.xcassets in Resources */,
+				58FA3B0718317C88001E95A3 /* README.md in Resources */,
 				58D691FB180AAD5000310081 /* pic2.jpg in Resources */,
 				58FA3B0418317AA9001E95A3 /* Rumpus-FTPServer.zip in Resources */,
 				582816F5180337BB00AC5F7D /* InfoPlist.strings in Resources */,

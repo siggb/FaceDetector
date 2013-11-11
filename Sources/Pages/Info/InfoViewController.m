@@ -12,30 +12,16 @@
 {
     BOOL isViewed;
 }
-
 @end
 
+
 @implementation InfoViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    // for fun, don't blame me)
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utterance = nil;
     if (isViewed == NO) {
@@ -47,12 +33,6 @@
     }
     utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
     [synthesizer speakUtterance:utterance];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
