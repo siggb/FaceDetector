@@ -8,15 +8,22 @@
 
 #import "DetailViewController.h"
 #import "NSNumber+StringFileSize.h"
+#import "SCRFTPRequest.h"
 
 static const CGFloat ContainerWidth = 320;
 static const CGFloat ContainerHeight = 369;
+#define HomeDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
-@interface DetailViewController () <UIScrollViewDelegate>
 
+@interface DetailViewController () <UIScrollViewDelegate, SCRFTPRequestDelegate>
+{
+    NSUInteger bytesTransmitted;
+}
 @property (nonatomic, weak) IBOutlet UILabel *fileSizeLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIProgressView *progressView;
+@property (nonatomic, weak) IBOutlet UIButton *shareButton;
 
 @property (nonatomic) UIScrollView *theScrollView;
 @property (nonatomic) UIImageView *theImageView;
@@ -72,7 +79,7 @@ static const CGFloat ContainerHeight = 369;
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
-{    
+{
     CGSize bounds_size = self.theScrollView.bounds.size;
     CGRect contents_frame = self.theImageView.frame;
     
@@ -96,6 +103,92 @@ static const CGFloat ContainerHeight = 369;
 - (IBAction)backButtonClicked:(UIButton*)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)shareButtonClicked:(UIButton*)sender
+{
+    NSLog(@"shareButtonClicked");
+    
+    bytesTransmitted = 0;
+    [self.progressView setProgress:0];
+    [self.shareButton setEnabled:NO];
+    
+    NSData *data = UIImagePNGRepresentation(self.photoModel.photo);
+    NSString *path = [NSString stringWithFormat:@"%@/img%@_%@.png", HomeDirectory,
+                      self.photoModel.pk,
+                      [[DetailViewController visualDateFormatter] stringFromDate:[self.photoModel createdDate]]];
+    [[NSFileManager defaultManager] createFileAtPath:path contents:data attributes:nil];
+    
+    SCRFTPRequest *ftp_request = [[SCRFTPRequest alloc] initWithURL:[NSURL URLWithString:@"ftp://192.168.0.103/"]
+                                                       toUploadFile:path];
+    ftp_request.username = @"sig";
+    ftp_request.password = @"sig";
+    ftp_request.delegate = self;
+    [ftp_request startAsynchronous];
+}
+
+#pragma mark - Методы SCRFTPRequest Delegate
+
+- (void)ftpRequestDidFinish:(SCRFTPRequest *)request
+{
+    NSLog(@"Upload finished");
+    [self.shareButton setEnabled:YES];
+    [self.progressView setProgress:0 animated:NO];
+    bytesTransmitted = 0;
+}
+
+- (void)ftpRequest:(SCRFTPRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Upload failed: %@", [error localizedDescription]);
+    [self.shareButton setEnabled:YES];
+    [self.progressView setProgress:0 animated:NO];
+    bytesTransmitted = 0;
+}
+
+- (void)ftpRequestWillStart:(SCRFTPRequest *)request
+{
+    NSLog(@"Will transfer %llu bytes", request.fileSize);
+}
+
+- (void)ftpRequest:(SCRFTPRequest *)request didWriteBytes:(NSUInteger)bytesWritten
+{
+    NSLog(@"Transferred: %d", bytesWritten);
+    NSLog(@"Progress: %f", (float)bytesTransmitted/(float)request.fileSize);
+    
+    bytesTransmitted += bytesWritten;
+    [self.progressView setProgress:(float)bytesTransmitted/(float)request.fileSize];
+}
+
+- (void)ftpRequest:(SCRFTPRequest *)request didChangeStatus:(SCRFTPRequestStatus)status
+{
+    switch ((NSUInteger) status) {
+        case SCRFTPRequestStatusOpenNetworkConnection:
+            NSLog(@"Opened connection");
+            break;
+        case SCRFTPRequestStatusReadingFromStream:
+            NSLog(@"Reading from stream...");
+            break;
+        case SCRFTPRequestStatusWritingToStream:
+            NSLog(@"Writing to stream...");
+            break;
+        case SCRFTPRequestStatusClosedNetworkConnection:
+            NSLog(@"Closed connection");
+            break;
+        case SCRFTPRequestStatusError:
+            NSLog(@"Error occurred");
+            break;
+    }
+}
+
+#pragma mark - Вспомогательные методы
+
++ (NSDateFormatter*)visualDateFormatter
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.locale = [NSLocale currentLocale];
+    [df setDateFormat:@"d-MM-yy"];
+    [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"MSK"]];
+    return df;
 }
 
 @end
