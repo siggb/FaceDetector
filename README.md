@@ -1,5 +1,5 @@
-FaceDetector
-============
+Face Detector
+=============
 
 Project created for the educational purposes of the Course "Systems Administration".
 
