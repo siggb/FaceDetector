@@ -2,16 +2,20 @@
 
 ![Camera Page](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_01.PNG "Camera Page")
 
-This project were created for the educational purposes of the course "Systems Administration" ([Vladimir State Universaty](http://vlsu.ru), specialty ID is 230101).
+This project were created for the educational purposes of the course "Systems Administration" ([Vladimir State University](http://vlsu.ru), specialty ID is 230101).
 
 It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on device.
 
 ### Use Case
 
 Step 1: Go to the "Camera Page" and take a photo with detected face (or faces).
+
 Step 2: Next, go to the "Store Page" and select any photo from your usage history. All photos take by you previously are stored in the internal device MySQL database.
+
 Step 3: On the "Detail Page" you can resize photo if you want. And, of course, you can share your file through FTP to the server side. The server application called [Rumpus-FTPServer](http://www.maxum.com/Rumpus/). You should run it before the file transferring and change server IP-addres in the current project.
+
 Step 4: When image with detected face (or faces) will be on the computer you can co do anything with it.
+
 Step 5: Profit!
 
 ## License
