@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BACC87718F70A1F00FD4F57 /* IMG_01.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 0BACC87318F70A1F00FD4F57 /* IMG_01.PNG */; };
+		0BACC87818F70A1F00FD4F57 /* IMG_02.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 0BACC87418F70A1F00FD4F57 /* IMG_02.PNG */; };
+		0BACC87918F70A1F00FD4F57 /* IMG_03.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 0BACC87518F70A1F00FD4F57 /* IMG_03.PNG */; };
+		0BACC87A18F70A1F00FD4F57 /* IMG_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BACC87618F70A1F00FD4F57 /* IMG_04.png */; };
 		5806DE6D180491B9007F1B67 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6B180491B9007F1B67 /* CoreImage.framework */; };
 		5806DE6E180491B9007F1B67 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6C180491B9007F1B67 /* ImageIO.framework */; };
 		5806DE70180491C4007F1B67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5806DE6F180491C4007F1B67 /* QuartzCore.framework */; };
@@ -161,6 +165,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BACC87318F70A1F00FD4F57 /* IMG_01.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_01.PNG; sourceTree = "<group>"; };
+		0BACC87418F70A1F00FD4F57 /* IMG_02.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_02.PNG; sourceTree = "<group>"; };
+		0BACC87518F70A1F00FD4F57 /* IMG_03.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_03.PNG; sourceTree = "<group>"; };
+		0BACC87618F70A1F00FD4F57 /* IMG_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_04.png; sourceTree = "<group>"; };
 		5806DE6A18048E04007F1B67 /* CameraVCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVCAdditions.h; sourceTree = "<group>"; };
 		5806DE6B180491B9007F1B67 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		5806DE6C180491B9007F1B67 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -332,6 +340,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BACC87218F70A1F00FD4F57 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				0BACC87318F70A1F00FD4F57 /* IMG_01.PNG */,
+				0BACC87418F70A1F00FD4F57 /* IMG_02.PNG */,
+				0BACC87518F70A1F00FD4F57 /* IMG_03.PNG */,
+				0BACC87618F70A1F00FD4F57 /* IMG_04.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		5806DE6818048B4B007F1B67 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +592,7 @@
 		58D691F4180AAD5000310081 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BACC87218F70A1F00FD4F57 /* screenshots */,
 				58FA3B0218317AA9001E95A3 /* Rumpus-FTPServer.zip */,
 				58D691F5180AAD5000310081 /* pic1.jpg */,
 				58D691F6180AAD5000310081 /* pic2.jpg */,
@@ -790,12 +810,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BACC87718F70A1F00FD4F57 /* IMG_01.PNG in Resources */,
 				582816F6180337BB00AC5F7D /* FaceDetector-Info.plist in Resources */,
 				58D691FA180AAD5000310081 /* pic2.jpg in Resources */,
+				0BACC87A18F70A1F00FD4F57 /* IMG_04.png in Resources */,
 				58D691F8180AAD5000310081 /* pic1.jpg in Resources */,
 				582816F8180337BB00AC5F7D /* Images.xcassets in Resources */,
 				582816F2180337BB00AC5F7D /* Main.storyboard in Resources */,
 				582816F4180337BB00AC5F7D /* InfoPlist.strings in Resources */,
+				0BACC87818F70A1F00FD4F57 /* IMG_02.PNG in Resources */,
+				0BACC87918F70A1F00FD4F57 /* IMG_03.PNG in Resources */,
 				58FA3B0618317C88001E95A3 /* README.md in Resources */,
 				58D691FC180AAD5000310081 /* pic3.jpg in Resources */,
 				58FA3B0318317AA9001E95A3 /* Rumpus-FTPServer.zip in Resources */,
