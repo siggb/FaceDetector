@@ -10,11 +10,11 @@ It is a client iOS-application for the face detection (not recognition) and tran
 
 Step 1: Go to the "Camera Page" and take a photo with detected face (or faces).
 
-Step 2: Next, go to the "Store Page" and select any photo from your usage history. All photos take by you previously are stored in the internal device MySQL database.
+Step 2: Next, go to the ["Store Page"](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_02.PNG) and select any photo from your usage history. All photos take by you previously are stored in the internal device MySQL database.
 
-Step 3: On the "Detail Page" you can resize photo if you want. And, of course, you can share your file through FTP to the server side. The server application called [Rumpus-FTPServer](http://www.maxum.com/Rumpus/). You should run it before the file transferring and change server IP-addres in the current project.
+Step 3: On the ["Detail Page"](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_03.PNG) you can resize photo if you want. And, of course, you can share your file through FTP to the server side. The server application called [Rumpus-FTPServer](http://www.maxum.com/Rumpus/). You should run it before the file transferring and change server IP-addres in the current project.
 
-Step 4: When image with detected face (or faces) will be on the computer you can co do anything with it.
+Step 4: When image with detected face (or faces) [will be on the computer](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_04.png) you can co do anything with it.
 
 Step 5: Profit!
 
