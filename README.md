@@ -1,6 +1,6 @@
 ### Face Detector for iOS
 
-![Camera Page](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_01.PNG "Camera Page")![Store Page](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_02.PNG "Store Page")
+![Camera Page](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_01.PNG "Camera Page")
 
 This project were created for the educational purposes of the Course "Systems Administration" (Specialty ID: 230101). It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on device.
 
