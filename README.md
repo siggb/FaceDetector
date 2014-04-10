@@ -4,7 +4,7 @@
 
 This project were created for the educational purposes of the course "Administration of the Systems" ([Vladimir State University](http://vlsu.ru), specialty ID is 230101).
 
-It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on device.
+It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on the device.
 
 ## Requirements
 
