@@ -6,7 +6,14 @@ This project were created for the educational purposes of the course "Systems Ad
 
 It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on device.
 
-### Use Case
+## Requirements
+
+* Xcode 5 or higher
+* Apple LLVM compiler
+* iOS 7.0 or higher
+* ARC
+
+### Example Usage
 
 Step 1: Go to the "Camera Page" and take a photo with detected face (or faces).
 
