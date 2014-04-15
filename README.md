@@ -2,7 +2,7 @@
 
 ![Camera Page](https://raw.githubusercontent.com/siggb/FaceDetector/master/Sources/Resources/screenshots/IMG_01.PNG "Camera Page")
 
-This project were created for the educational purposes of the course "Administration of the Systems" ([Vladimir State University](http://vlsu.ru), specialty ID is 230101).
+This project was created for the educational purposes of the course "Administration of the Systems" ([Vladimir State University](http://vlsu.ru), specialty ID is 230101).
 
 It is a client iOS-application for the face detection (not recognition) and transmitting photos through FTP-protocol. Requires XCode 5 and iOS 7 iPhone. Project runs only on the device.
 
